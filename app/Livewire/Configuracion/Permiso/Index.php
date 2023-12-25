@@ -3,11 +3,15 @@
 namespace App\Livewire\Configuracion\Permiso;
 
 use App\Models\Permiso;
+use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Attributes\Url;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithPagination;
 
+#[Title('Configuración de permisos')]
+#[Layout('components.layouts.app')]
 class Index extends Component {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';

@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Livewire\Home;
+namespace App\Livewire\Configuracion\Rol;
 
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-#[Title('Home - Sioga')]
+#[Title('Crear rol')]
 #[Layout('components.layouts.app')]
-class Index extends Component
+class Create extends Component
 {
     public function render()
     {
-        return view('livewire.home.index');
+        return view('livewire.configuracion.rol.create');
     }
 }

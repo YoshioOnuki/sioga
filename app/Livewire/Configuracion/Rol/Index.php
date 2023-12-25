@@ -4,11 +4,15 @@ namespace App\Livewire\Configuracion\Rol;
 
 use App\Models\Permiso;
 use App\Models\Rol;
+use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Attributes\Url;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithPagination;
 
+#[Title('Configuración de roles')]
+#[Layout('components.layouts.app')]
 class Index extends Component {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';

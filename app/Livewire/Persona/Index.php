@@ -7,11 +7,15 @@ use App\Models\GradoAcademico;
 use App\Models\Persona;
 use App\Models\TipoDocumento;
 use App\Models\Ubigeo;
+use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Attributes\Url;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithPagination;
 
+#[Title('Personas - Sioga')]
+#[Layout('components.layouts.app')]
 class Index extends Component {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
