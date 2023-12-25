@@ -33,6 +33,8 @@ Route::group(['middleware' => ['auth']], function () {
         ->name('configuracion-rol');
     Route::get('/configuracion/rol/create', RolCreate::class)
         ->name('configuracion-rol-create');
+    Route::get('/configuracion/rol/{rol_id}/edit', RolCreate::class)
+        ->name('configuracion-rol-edit');
     // CONFIGURACIÓN DE PERMISOS
     Route::get('/configuracion/permisos', PermisoIndex::class)
         ->name('configuracion-permiso');

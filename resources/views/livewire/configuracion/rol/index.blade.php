@@ -6,7 +6,8 @@
                     <div class="page-pretitle">
                         <ol class="breadcrumb breadcrumb-arrows" aria-label="breadcrumbs">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page"><a href="#">Configuración</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a href="#">Configuración</a>
+                            </li>
                             <li class="breadcrumb-item active" aria-current="page"><a href="#">Roles</a></li>
                         </ol>
                     </div>
@@ -16,7 +17,8 @@
                 </div>
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
-                        <a href="{{ route('configuracion-rol-create') }}" class="btn btn-primary d-none d-sm-inline-block">
+                        <a href="{{ route('configuracion-rol-create') }}"
+                            class="btn btn-primary d-none d-sm-inline-block">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                 viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                 stroke-linecap="round" stroke-linejoin="round">
@@ -83,90 +85,92 @@
                                 </thead>
                                 <tbody>
                                     @forelse ($roles as $item)
-                                    <tr>
-                                        <td>
-                                            <span class="text-secondary">{{ $item->rol_id }}</span>
-                                        </td>
-                                        <td>
-                                            <span class="fw-bold">
-                                                {{ $item->rol_nombre }}
-                                            </span>
-                                        </td>
-                                        <td>
-                                            {{ formatFechaHoras($item->created_at) }}
-                                        </td>
-                                        <td>
-                                            @if ($item->rol_estado == 1)
-                                            <span class="status status-teal px-3 py-2">
-                                                <span class="status-dot status-dot-animated"></span>
-                                                Activo
-                                            </span>
-                                            @else
-                                            <span class="status status-red px-3 py-2">
-                                                <span class="status-dot status-dot-animated"></span>
-                                                Inactivo
-                                            </span>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <div class="btn-list flex-nowrap justify-content-end">
-                                                <button type="button" class="btn btn-outline-azure btn-sm"
-                                                    data-bs-toggle="modal" data-bs-target="#modal-rol"
-                                                    wire:click="edit({{ $item->rol_id }})">
-                                                    Editar
-                                                </button>
-                                                <button type="button" class="btn btn-sm btn-outline-danger"
-                                                    wire:confirm="¿Quieres eliminar este rol?"
-                                                    wire:click="delete({{ $item->rol_id }})">
-                                                    Eliminar
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                        <tr wire:key="{{ $item->rol_id }}">
+                                            <td>
+                                                <span class="text-secondary">{{ $item->rol_id }}</span>
+                                            </td>
+                                            <td>
+                                                <span class="fw-bold">
+                                                    {{ $item->rol_nombre }}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                {{ formatFechaHoras($item->created_at) }}
+                                            </td>
+                                            <td>
+                                                @if ($item->rol_estado == 1)
+                                                    <span class="status status-teal px-3 py-2">
+                                                        <span class="status-dot status-dot-animated"></span>
+                                                        Activo
+                                                    </span>
+                                                @else
+                                                    <span class="status status-red px-3 py-2">
+                                                        <span class="status-dot status-dot-animated"></span>
+                                                        Inactivo
+                                                    </span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <div class="btn-list flex-nowrap justify-content-end">
+                                                    <a href="{{ route('configuracion-rol-edit', ['rol_id' => $item->rol_id]) }}"
+                                                        class="btn btn-outline-azure btn-sm">
+                                                        Editar
+                                                    </a>
+                                                    <button type="button" class="btn btn-sm btn-outline-danger"
+                                                        wire:confirm="¿Quieres eliminar este rol?"
+                                                        wire:click="delete({{ $item->rol_id }})">
+                                                        Eliminar
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
                                     @empty
-                                    @if ($roles->count() == 0 && $search != '')
-                                    <tr>
-                                        <td colspan="7">
-                                            <div class="text-center" style="padding-bottom: 5rem; padding-top: 5rem;">
-                                                <span class="text-secondary">
-                                                    No se encontraron resultados para "<strong>{{ $search }}</strong>"
-                                                </span>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    @else
-                                    <tr>
-                                        <td colspan="7">
-                                            <div class="text-center" style="padding-bottom: 5rem; padding-top: 5rem;">
-                                                <span class="text-secondary">
-                                                    No hay roles registrados
-                                                </span>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    @endif
+                                        @if ($roles->count() == 0 && $search != '')
+                                            <tr>
+                                                <td colspan="7">
+                                                    <div class="text-center"
+                                                        style="padding-bottom: 5rem; padding-top: 5rem;">
+                                                        <span class="text-secondary">
+                                                            No se encontraron resultados para
+                                                            "<strong>{{ $search }}</strong>"
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @else
+                                            <tr>
+                                                <td colspan="7">
+                                                    <div class="text-center"
+                                                        style="padding-bottom: 5rem; padding-top: 5rem;">
+                                                        <span class="text-secondary">
+                                                            No hay roles registrados
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endif
                                     @endforelse
                                 </tbody>
                             </table>
                         </div>
                         <div class="card-footer {{ $roles->hasPages() ? 'py-0' : '' }}">
                             @if ($roles->hasPages())
-                            <div class="d-flex justify-content-between">
-                                <div class="d-flex align-items-center text-secondary">
-                                    Mostrando {{ $roles->firstItem() }} - {{ $roles->lastItem() }} de {{
-                                    $roles->total()}} registros
+                                <div class="d-flex justify-content-between">
+                                    <div class="d-flex align-items-center text-secondary">
+                                        Mostrando {{ $roles->firstItem() }} - {{ $roles->lastItem() }} de
+                                        {{ $roles->total() }} registros
+                                    </div>
+                                    <div class="mt-3">
+                                        {{ $roles->links() }}
+                                    </div>
                                 </div>
-                                <div class="mt-3">
-                                    {{ $roles->links() }}
-                                </div>
-                            </div>
                             @else
-                            <div class="d-flex justify-content-between">
-                                <div class="d-flex align-items-center text-secondary">
-                                    Mostrando {{ $roles->firstItem() }} - {{ $roles->lastItem() }} de {{
-                                    $roles->total()}} registros
+                                <div class="d-flex justify-content-between">
+                                    <div class="d-flex align-items-center text-secondary">
+                                        Mostrando {{ $roles->firstItem() }} - {{ $roles->lastItem() }} de
+                                        {{ $roles->total() }} registros
+                                    </div>
                                 </div>
-                            </div>
                             @endif
                         </div>
                     </div>
@@ -195,16 +199,17 @@
                                 <input type="text" class="form-control @error('nombre') is-invalid @enderror"
                                     id="nombre" wire:model.live="nombre" placeholder="Ingrese su nombre" />
                                 @error('nombre')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
                                 @enderror
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-label">Estado</div>
                                 <div>
                                     <label class="form-check form-check-inline">
-                                        <input class="form-check-input @error('estado') is-invalid @enderror" type="checkbox" wire:model.live="estado">
+                                        <input class="form-check-input @error('estado') is-invalid @enderror"
+                                            type="checkbox" wire:model.live="estado">
                                         <span class="form-check-label">Activo</span>
                                     </label>
                                 </div>
@@ -220,7 +225,8 @@
                                 <div class="row g-1">
                                     <div class="col-lg-12">
                                         <label class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" wire:model.live="seleccionar_todo">
+                                            <input class="form-check-input" type="checkbox"
+                                                wire:model.live="seleccionar_todo">
                                             <span class="form-check-label">
                                                 Seleccionar todos
                                             </span>
@@ -229,7 +235,8 @@
                                     @foreach ($permisos as $item)
                                         <div class="col-lg-3 col-sm-6" wire:key="{{ $item->permiso_id }}">
                                             <label class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" wire:model.live="permiso" value="{{ $item->permiso_id }}">
+                                                <input class="form-check-input" type="checkbox"
+                                                    wire:model.live="permiso" value="{{ $item->permiso_id }}">
                                                 <span class="form-check-label">
                                                     {{ $item->permiso_nombre }}
                                                 </span>

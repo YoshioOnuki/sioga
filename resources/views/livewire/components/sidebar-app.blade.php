@@ -129,7 +129,7 @@
                     </a>
                 </li>
                 <li
-                    class="nav-item {{ request()->routeIs('configuracion-rol') || request()->routeIs('configuracion-permiso') ? 'active' : '' }} dropdown">
+                    class="nav-item {{ request()->routeIs('configuracion-rol*') || request()->routeIs('configuracion-permiso') ? 'active' : '' }} dropdown">
                     <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown"
                         data-bs-auto-close="false" role="button" aria-expanded="true">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -148,10 +148,10 @@
                         </span>
                     </a>
                     <div
-                        class="dropdown-menu {{ request()->routeIs('configuracion-rol') || request()->routeIs('configuracion-permiso') ? 'show' : '' }}">
+                        class="dropdown-menu {{ request()->routeIs('configuracion-rol*') || request()->routeIs('configuracion-permiso') ? 'show' : '' }}">
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
-                                <a class="dropdown-item {{ request()->routeIs('configuracion-rol') ? 'active fw-medium' : '' }}"
+                                <a class="dropdown-item {{ request()->routeIs('configuracion-rol*') ? 'active fw-medium' : '' }}"
                                     href="{{ route('configuracion-rol') }}">
                                     Roles
                                 </a>
