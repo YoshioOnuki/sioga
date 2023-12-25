@@ -2,7 +2,35 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Home as Home;
+use App\Livewire\Auth\Login as Login;
+use App\Livewire\Home\Index as HomeIndex;
+use App\Livewire\Usuario\Index as UsuarioIndex;
+use App\Livewire\Persona\Index as PersonaIndex;
+use App\Livewire\Configuracion\Rol\Index as RolIndex;
+use App\Livewire\Configuracion\Permiso\Index as PermisoIndex;
 
 // RUTA DE INICIO
 Route::get('/', Home::class)
     ->name('inicio');
+// RUTA DE LOGIN
+Route::get('/login', Login::class)
+    ->middleware('guest')
+    ->name('login');
+// RUTA DE LOGOUT
+Route::group(['middleware' => ['auth']], function () {
+    // HOME ADMINISTRADOR
+    Route::get('/home', HomeIndex::class)
+        ->name('home');
+    // CONFIGURACIÓN DE PERSONAS
+    Route::get('/persona', PersonaIndex::class)
+        ->name('persona');
+    // CONFIGURACIÓN DE USUARIOS
+    Route::get('/usuario', UsuarioIndex::class)
+        ->name('usuario');
+    // CONFIGURACIÓN DE PERSONAS
+    Route::get('/configuracion/roles', RolIndex::class)
+        ->name('configuracion-rol');
+    // CONFIGURACIÓN DE USUARIOS
+    Route::get('/configuracion/permisos', PermisoIndex::class)
+        ->name('configuracion-permiso');
+});

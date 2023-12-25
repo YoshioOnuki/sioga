@@ -113,8 +113,7 @@
                                 </div>
                             </div>
                             <div class="flex-equal text-end ms-1">
-                                {{-- <a href="{{ route('login') }}" class="btn btn-success">Iniciar Sesión</a> --}}
-                                <a href="#" class="btn btn-success">Iniciar Sesión</a>
+                                <a href="{{ route('login') }}" class="btn btn-success">Iniciar Sesión</a>
                             </div>
                         </div>
                     </div>

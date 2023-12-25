@@ -8,7 +8,6 @@ use Livewire\Component;
 
 #[Layout('components.layouts.home')]
 #[Title('SIOGA - Sistema de Obtención de Grado Académico - Escuela de Posgrado - UNU')]
-
 class Home extends Component
 {
     public function render()
