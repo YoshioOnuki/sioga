@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\Home as Home;
 use App\Livewire\Auth\Login as Login;
 use App\Livewire\Home\Index as HomeIndex;
-use App\Livewire\Usuario\Index as UsuarioIndex;
 use App\Livewire\Persona\Index as PersonaIndex;
 use App\Livewire\Configuracion\Rol\Index as RolIndex;
 use App\Livewire\Configuracion\Rol\Create as RolCreate;
@@ -25,9 +24,6 @@ Route::group(['middleware' => ['auth']], function () {
     // CONFIGURACIÓN DE PERSONAS
     Route::get('/persona', PersonaIndex::class)
         ->name('persona');
-    // CONFIGURACIÓN DE USUARIOS
-    Route::get('/usuario', UsuarioIndex::class)
-        ->name('usuario');
     // CONFIGURACIÓN DE ROLES
     Route::get('/configuracion/roles', RolIndex::class)
         ->name('configuracion-rol');
