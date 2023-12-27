@@ -47,6 +47,9 @@
             <div class="alert alert-info bg-info-lt m-0 mb-3 fw-bold animate__animated animate__fadeIn animate__faster">
                 A continuación se muestra la lista de roles registrados en el sistema.
             </div>
+            @if (session('modo') === 'create' || session('modo') === 'edit')
+                <div wire:init="mostrar_toast"></div>
+            @endif
             <div class="row g-3">
                 <div class="col-12">
                     <div class="card animate__animated animate__fadeIn animate__faster">
@@ -178,86 +181,13 @@
             </div>
         </div>
     </div>
-    {{-- modal rol --}}
-    <div class="modal" id="modal-rol" tabindex="-1" wire:ignore.self>
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">
-                        {{ $title_modal }}
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                        wire:click="limpiar_modal"></button>
-                </div>
-                <form autocomplete="off" novalidate wire:submit="guardar">
-                    <div class="modal-body">
-                        <div class="row g-3">
-                            <div class="col-lg-12">
-                                <label for="nombre" class="form-label required">
-                                    Nombre
-                                </label>
-                                <input type="text" class="form-control @error('nombre') is-invalid @enderror"
-                                    id="nombre" wire:model.live="nombre" placeholder="Ingrese su nombre" />
-                                @error('nombre')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="form-label">Estado</div>
-                                <div>
-                                    <label class="form-check form-check-inline">
-                                        <input class="form-check-input @error('estado') is-invalid @enderror"
-                                            type="checkbox" wire:model.live="estado">
-                                        <span class="form-check-label">Activo</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row g-3">
-                            <div class="col-lg-12">
-                                <div class="form-label">
-                                    Permisos
-                                </div>
-                                <div class="row g-1">
-                                    <div class="col-lg-12">
-                                        <label class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox"
-                                                wire:model.live="seleccionar_todo">
-                                            <span class="form-check-label">
-                                                Seleccionar todos
-                                            </span>
-                                        </label>
-                                    </div>
-                                    @foreach ($permisos as $item)
-                                        <div class="col-lg-3 col-sm-6" wire:key="{{ $item->permiso_id }}">
-                                            <label class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox"
-                                                    wire:model.live="permiso" value="{{ $item->permiso_id }}">
-                                                <span class="form-check-label">
-                                                    {{ $item->permiso_nombre }}
-                                                </span>
-                                            </label>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"
-                            wire:click="limpiar_modal">
-                            Cancelar
-                        </button>
-                        <button type="submit" class="btn btn-primary ms-auto">
-                            {{ $button_modal }}
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 </div>
+@script
+    <script>
+        document.addEventListener('livewire:initialized', function() {
+            @this.on('toast-basico', (event) => {
+                console.log(event.detail.message);
+            })
+        });
+    </script>
+@endscript

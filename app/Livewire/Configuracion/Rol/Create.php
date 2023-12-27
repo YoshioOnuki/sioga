@@ -69,24 +69,24 @@ class Create extends Component
             $rol->rol_estado = $this->estado;
             $rol->save();
             $rol->permisos()->sync($this->permiso);
-            // mostramos mensaje
-            $this->dispatch(
-                'toast-basico',
-                mensaje: 'El rol se creo correctamente',
-                type: 'success'
-            );
+            // guardamos en sesion el tipo de mensaje y el mensaje
+            session([
+                'modo' => 'create',
+                'tipo' => 'success',
+                'mensaje' => 'Rol creado correctamente.'
+            ]);
         } else {
             $rol = Rol::find($this->rol_id);
             $rol->rol_nombre = $this->nombre;
             $rol->rol_estado = $this->estado;
             $rol->save();
             $rol->permisos()->sync($this->permiso);
-            // mostramos mensaje
-            $this->dispatch(
-                'toast-basico',
-                mensaje: 'El rol se actualizo correctamente',
-                type: 'success'
-            );
+            // guardamos en sesion el tipo de mensaje y el mensaje
+            session([
+                'modo' => 'edit',
+                'tipo' => 'success',
+                'mensaje' => 'Rol editado correctamente.'
+            ]);
         }
         // redireccionamos a la vista de roles
         return redirect()->route('configuracion-rol');
