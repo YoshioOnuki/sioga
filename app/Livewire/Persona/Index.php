@@ -43,6 +43,7 @@ class Index extends Component
             ->where('persona_estado', 1)
             ->where('persona_id', '!=', auth()->user()->persona->persona_id)
             ->paginate(10);
+        // dd($personas);
         return view('livewire.persona.index', [
             'personas' => $personas,
         ]);

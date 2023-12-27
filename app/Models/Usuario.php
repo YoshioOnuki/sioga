@@ -33,7 +33,7 @@ class Usuario extends Authenticatable
     }
 
     public function getAvatarAttribute(): string {
-        return $this->usuario_avatar ?? 'https://ui-avatars.com/api/?name=' . $this->persona->solo_primeros_nombres . '&size=64&&color=FFFFFF&background=000000&bold=true';
+        return $this->persona->avatar;
     }
 
     public function getEsAdministradorAttribute(): bool {
