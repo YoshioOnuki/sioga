@@ -103,10 +103,16 @@
                                                 {{ $item->persona_documento }}
                                             </td>
                                             <td>
-                                                <span
-                                                    class="badge {{ getRolByPersonaId($item->persona_id)['rol_color'] }} px-3 py-2">
-                                                    {{ getRolByPersonaId($item->persona_id)['rol_nombre'] }}
-                                                </span>
+                                                @if ($item->usuario)
+                                                    <span
+                                                        class="badge {{ getColorRol($item->usuario->usuario_id) }} px-3 py-2">
+                                                        {{ $item->usuario->rol->rol_nombre }}
+                                                    </span>
+                                                @else
+                                                    <span class="badge bg-red-lt px-3 py-2">
+                                                        SIN ROL
+                                                    </span>
+                                                @endif
                                             </td>
                                             <td>
                                                 {{ formatFechaHoras($item->created_at) }}
@@ -126,6 +132,12 @@
                                             </td>
                                             <td>
                                                 <div class="btn-list flex-nowrap justify-content-end">
+                                                    <button type="button"
+                                                        wire:click="asignar_usuario({{ $item->persona_id }})"
+                                                        data-bs-toggle="modal" data-bs-target="#modal-asignar-usuario"
+                                                        class="btn btn-outline-cyan btn-sm">
+                                                        Asignar Usuario
+                                                    </button>
                                                     <a href="{{ route('persona-edit', ['persona_id' => $item->persona_id]) }}"
                                                         class="btn btn-outline-azure btn-sm">
                                                         Editar
@@ -188,6 +200,125 @@
                             @endif
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div wire:ignore.self class="modal" id="modal-asignar-usuario" tabindex="-1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        {{ $titulo_modal }}
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        wire:click="limpiar_modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-lg-12 mt-2 text-center">
+                            @if ($avatar)
+                                <img src="{{ $avatar->temporaryUrl() }}" alt="avatar"
+                                    class="avatar avatar-lg">
+                            @else
+                                @php
+                                    $persona = App\Models\Persona::find($persona_id);
+                                @endphp
+                                @if ($persona)
+                                    <img src="{{ asset($persona->avatar) }}" alt="avatar"
+                                        class="avatar avatar-lg ">
+                                @endif
+                            @endif
+                        </div>
+                        <div class="col-lg-12">
+                            <label for="correo_electronico" class="form-label required">
+                                Correo electrónico
+                            </label>
+                            <input type="email"
+                                class="form-control @error('correo_electronico') is-invalid @enderror"
+                                id="correo_electronico" wire:model.live="correo_electronico"
+                                placeholder="Ingrese su correo electrónico" />
+                            @error('correo_electronico')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="col-lg-12">
+                            <label for="contraseña" class="form-label required">
+                                Contraseña
+                            </label>
+                            <input type="password" class="form-control @error('contraseña') is-invalid @enderror"
+                                id="contraseña" wire:model.live="contraseña" placeholder="Ingrese su contraseña" />
+                            @error('contraseña')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="col-lg-12">
+                            <label for="confirmar_contraseña" class="form-label required">
+                                Confirmación de Contraseña
+                            </label>
+                            <input type="password"
+                                class="form-control @error('confirmar_contraseña') is-invalid @enderror"
+                                id="confirmar_contraseña" wire:model.live="confirmar_contraseña"
+                                placeholder="Ingrese su confirmación de contraseña" />
+                            @error('confirmar_contraseña')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="col-lg-12">
+                            <label for="rol" class="form-label required">
+                                Rol
+                            </label>
+                            <select type="password" class="form-select @error('rol') is-invalid @enderror"
+                                id="rol" wire:model.live="rol">
+                                <option value="">Seleccione un rol</option>
+                                @foreach ($roles as $item)
+                                    <option value="{{ $item->rol_id }}">{{ $item->rol_nombre }}</option>
+                                @endforeach
+                            </select>
+                            @error('rol')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="col-lg-12">
+                            <label for="avatar" class="form-label">
+                                Avatar
+                            </label>
+                            <input type="file" class="form-control @error('avatar') is-invalid @enderror"
+                                id="avatar" wire:model.live="avatar" accept="image/*" />
+                            @error('avatar')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-label">Estado</div>
+                            <div>
+                                <label class="form-check form-check-inline">
+                                    <input class="form-check-input @error('estado') is-invalid @enderror"
+                                        type="checkbox" wire:model.live="estado">
+                                    <span class="form-check-label">Activo</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-outline-danger" data-bs-dismiss="modal"
+                        wire:click="limpiar_modal">
+                        Cancelar
+                    </a>
+                    <button type="button" wire:click="guardar" class="btn btn-primary ms-auto">
+                        {{ $boton_modal }}
+                    </button>
                 </div>
             </div>
         </div>

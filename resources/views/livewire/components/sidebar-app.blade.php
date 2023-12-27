@@ -38,8 +38,8 @@
                     {{ $nombre }}
                 </span>
                 <div class="mt-3 w-full ps-3">
-                    <span class="badge {{ getRol($usuario->usuario_id)['rol_color'] }} px-3 py-2 w-100">
-                        {{ getRol($usuario->usuario_id)['rol_nombre'] }}
+                    <span class="badge {{ getColorRol($usuario->usuario_id) }} px-3 py-2 w-100">
+                        {{ $usuario->rol->rol_nombre }}
                     </span>
                 </div>
                 <div class="mt-2 mb-4 mb-lg-0 w-full ps-3">

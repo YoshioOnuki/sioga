@@ -12,7 +12,8 @@ use Livewire\WithPagination;
 
 #[Title('Configuración de permisos')]
 #[Layout('components.layouts.app')]
-class Index extends Component {
+class Index extends Component
+{
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
@@ -34,7 +35,8 @@ class Index extends Component {
     #[Validate('nullable|boolean')]
     public $estado = false;
 
-    public function create() {
+    public function create()
+    {
         $this->limpiar_modal();
         $this->modo = 'create';
         $this->title_modal = 'Crear nuevo permiso';
@@ -43,7 +45,8 @@ class Index extends Component {
         $this->resetValidation();
     }
 
-    public function limpiar_modal() {
+    public function limpiar_modal()
+    {
         $this->reset([
             'nombre',
             'estado'
@@ -52,7 +55,8 @@ class Index extends Component {
         $this->resetValidation();
     }
 
-    public function edit($permiso_id) {
+    public function edit($permiso_id)
+    {
         $this->limpiar_modal();
         $this->modo = 'edit';
         $this->title_modal = 'Editar permiso';
@@ -65,7 +69,8 @@ class Index extends Component {
         $this->estado = $permiso->permiso_estado == 1 ? true : false;
     }
 
-    public function guardar() {
+    public function guardar()
+    {
         // validamos los campos
         $this->validate([
             'nombre' => 'required|string|max:50|unique:permiso,permiso_nombre,' . $this->permiso_id . ',permiso_id',
@@ -105,7 +110,8 @@ class Index extends Component {
         $this->limpiar_modal();
     }
 
-    public function delete($permiso_id) {
+    public function delete($permiso_id)
+    {
         // verificamos si el permiso tiene roles asignados
         $permiso = Permiso::find($permiso_id);
         if ($permiso->roles->count() > 0) {
@@ -127,7 +133,8 @@ class Index extends Component {
         );
     }
 
-    public function render() {
+    public function render()
+    {
         $permisos = Permiso::search($this->search)
             ->orderBy('created_at', 'desc')
             ->paginate($this->mostrar_paginate);
