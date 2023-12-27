@@ -182,7 +182,7 @@
         </div>
     </div>
     <div class="col-12 col-lg-6 col-xl-8 d-none d-lg-block">
-        <div class="bg-cover h-100 min-vh-100" style="background-image: url({{ asset('assets/media/foto-2-1.webp') }})">
+        <div class="bg-cover h-100 min-vh-100" style="background-image: url({{ asset('/media/foto-2-1.webp') }})">
         </div>
     </div>
 </div>

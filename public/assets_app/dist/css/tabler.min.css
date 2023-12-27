@@ -18466,6 +18466,12 @@ a.avatar {
     font-weight: var(--tblr-font-weight-bold);
     letter-spacing: 0.04em;
     vertical-align: bottom;
+
+    position: absolute!important;
+    top: 0!important;
+    right: 0!important;
+    transform: translate(50%,-50%);
+    z-index: 1;
 }
 a.badge {
     color: var(--tblr-bg-surface);
