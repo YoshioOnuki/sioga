@@ -45,7 +45,7 @@
         <div class="container-xl">
             <div class="row g-5">
                 <div class="col-12">
-                    <div class="card card-stacke">
+                    <div class="card card-stacke animate__animated animate__fadeIn animate__faster">
                         <form wire:submit="guardar">
                             <div class="card-body">
                                 <div class="mb-3 row">
@@ -107,6 +107,9 @@
                                 </div>
                             </div>
                             <div class="card-footer text-end">
+                                <a href="{{ route('configuracion-rol') }}" class="btn btn-secondary">
+                                    Regresar
+                                </a>
                                 <button type="submit" class="btn btn-primary">
                                     Guardar
                                 </button>
