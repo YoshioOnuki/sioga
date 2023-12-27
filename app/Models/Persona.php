@@ -45,16 +45,16 @@ class Persona extends Model
         return $this->belongsTo(Ubigeo::class, 'ubigeo_id');
     }
 
-    public function usuario(): HasMany {
-        return $this->hasMany(Usuario::class, 'persona_id');
-    }
-
     public function docente(): HasMany {
         return $this->hasMany(Docente::class, 'persona_id');
     }
 
     public function tesista(): HasMany {
         return $this->hasMany(Tesista::class, 'persona_id');
+    }
+
+    public function usuario() {
+        return $this->hasOne(Usuario::class, 'persona_id');
     }
 
     protected static function booted()
@@ -85,6 +85,10 @@ class Persona extends Model
     public function getSoloPrimerosNombresAttribute(): string {
         $nombres = explode(' ', $this->persona_nombres);
         return $nombres[0] . ' ' . $this->persona_apellido_paterno;
+    }
+
+    public function getAvatarAttribute(): string {
+        return $this->usuario_avatar ?? 'https://ui-avatars.com/api/?name=' . $this->solo_primeros_nombres . '&size=64&&color=FFFFFF&background=0ea5e9&bold=true';
     }
 
     protected static function boot() {

@@ -5,6 +5,7 @@ use App\Livewire\Home as Home;
 use App\Livewire\Auth\Login as Login;
 use App\Livewire\Home\Index as HomeIndex;
 use App\Livewire\Persona\Index as PersonaIndex;
+use App\Livewire\Persona\Create as PersonaCreate;
 use App\Livewire\Configuracion\Rol\Index as RolIndex;
 use App\Livewire\Configuracion\Rol\Create as RolCreate;
 use App\Livewire\Configuracion\Permiso\Index as PermisoIndex;
@@ -24,6 +25,10 @@ Route::group(['middleware' => ['auth']], function () {
     // CONFIGURACIÓN DE PERSONAS
     Route::get('/persona', PersonaIndex::class)
         ->name('persona');
+    Route::get('/persona/create', PersonaCreate::class)
+        ->name('persona-create');
+    Route::get('/persona/{persona_id}/edit', PersonaCreate::class)
+        ->name('persona-edit');
     // CONFIGURACIÓN DE ROLES
     Route::get('/configuracion/roles', RolIndex::class)
         ->name('configuracion-rol');

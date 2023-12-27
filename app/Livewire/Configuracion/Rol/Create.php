@@ -10,11 +10,10 @@ use Livewire\Attributes\Validate;
 use Livewire\Component;
 use App\Livewire\Configuracion\Rol\Index as RolIndex;
 
-#[Title('Crear rol')]
 #[Layout('components.layouts.app')]
 class Create extends Component
 {
-    // variables modal
+    // variables 
     public $titulo = 'Crear rol';
     public $modo = 'create';
     public $rol_id;
@@ -91,11 +90,12 @@ class Create extends Component
         // redireccionamos a la vista de roles
         return redirect()->route('configuracion-rol');
     }
+
     public function render()
     {
         $permisos = Permiso::orderBy('permiso_nombre', 'asc')->get();
         return view('livewire.configuracion.rol.create', [
             'permisos' => $permisos
-        ]);
+        ])->title($this->titulo);
     }
 }
