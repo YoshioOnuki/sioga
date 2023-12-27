@@ -25,19 +25,6 @@ class Index extends Component
     #[Url('buscar')]
     public $search = '';
 
-    // public function mount()
-    // {
-    //     // obtenemos la sesion para mostrar el mensaje
-    //     if (session('modo') === 'create' || session('modo') === 'edit') {
-    //         $this->dispatch(
-    //             'toast-basico',
-    //             mensaje: session('mensaje'),
-    //             type: session('tipo')
-    //         );
-    //         session()->forget(['modo', 'mensaje', 'tipo']);
-    //     }
-    // }
-
     public function mostrar_toast()
     {
         $this->dispatch(
