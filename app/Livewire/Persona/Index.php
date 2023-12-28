@@ -99,9 +99,13 @@ class Index extends Component
 
     public function guardar()
     {
+        // buscamos si la persona tiene un usuario eliminado
+        $usuario = Usuario::onlyTrashed()
+            ->where('persona_id', $this->persona_id)
+            ->first();
         // validamos los campos
         $this->validate([
-            'correo_electronico' => 'required|email|max:50|unique:usuario,usuario_correo,' . $this->usuario_id . ',usuario_id',
+            'correo_electronico' => 'required|email|max:50|unique:usuario,usuario_correo,' . ($usuario ? $usuario->usuario_id : $this->usuario_id) . ',usuario_id',
             'contraseña' => $this->modo == 'create' ? 'required|string|min:8|max:50' : 'nullable|string|min:8|max:50',
             'confirmar_contraseña' => $this->modo == 'create'
                 ? 'required|string|min:8|max:50|same:contraseña'
@@ -111,7 +115,37 @@ class Index extends Component
             'estado' => 'nullable|boolean',
             'rol' => 'required|exists:rol,rol_id'
         ]);
-
+        // verificamos si la persona tiene un usuario eliminado para restaurarlo
+        if ($usuario) {
+            $usuario->restore();
+            $usuario->usuario_correo = $this->correo_electronico;
+            $usuario->usuario_password = Hash::make($this->contraseña);
+            if ($this->avatar) {
+                $path = 'files/images/';
+                $filename = time() . $this->persona_id . uniqid() . '.' . $this->avatar->getClientOriginalExtension();
+                $this->avatar->storeAs($path, $filename, 'public_file');
+                $usuario->usuario_avatar = $path . $filename;
+            }
+            $usuario->usuario_estado = $this->estado;
+            $usuario->rol_id = $this->rol;
+            $usuario->save();
+            // mostramos mensaje
+            $this->dispatch(
+                'toast-basico',
+                mensaje: 'El usuario se asignó correctamente',
+                type: 'success'
+            );
+            // cerramos el modal
+            $this->dispatch(
+                'modal',
+                modal: '#modal-asignar-usuario',
+                action: 'hide'
+            );
+            // limpiamos el modal
+            $this->limpiar_modal();
+            return;
+        }
+        // realizamos la asignación
         if ($this->modo == 'create') {
             $usuario = new Usuario();
             $usuario->usuario_correo = $this->correo_electronico;
@@ -167,6 +201,28 @@ class Index extends Component
         );
         // limpiamos el modal
         $this->limpiar_modal();
+    }
+
+    public function eliminar_usuario($persona_id)
+    {
+        $usuario = Usuario::where('persona_id', $persona_id)->first();
+        if ($usuario) {
+            $usuario->delete();
+            // mostramos mensaje
+            $this->dispatch(
+                'toast-basico',
+                mensaje: 'El usuario se eliminó correctamente',
+                type: 'success'
+            );
+        }
+        // limpiamos el modal
+        $this->limpiar_modal();
+        // cerramos el modal
+        $this->dispatch(
+            'modal',
+            modal: '#modal-asignar-usuario',
+            action: 'hide'
+        );
     }
 
     public function render()
