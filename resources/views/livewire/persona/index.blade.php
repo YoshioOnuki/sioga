@@ -220,6 +220,9 @@
                             @if ($avatar)
                                 <img src="{{ $avatar->temporaryUrl() }}" alt="avatar"
                                     class="avatar avatar-lg">
+                            @elseif ($avatar_temp)
+                                <img src="{{ asset($avatar_temp) }}" alt="avatar"
+                                    class="avatar avatar-lg">
                             @else
                                 @php
                                     $persona = App\Models\Persona::find($persona_id);
@@ -245,7 +248,8 @@
                             @enderror
                         </div>
                         <div class="col-lg-12">
-                            <label for="contraseña" class="form-label required">
+                            <label for="contraseña"
+                                class="form-label @if ($modo == 'create') required @endif">
                                 Contraseña
                             </label>
                             <input type="password" class="form-control @error('contraseña') is-invalid @enderror"
@@ -257,7 +261,8 @@
                             @enderror
                         </div>
                         <div class="col-lg-12">
-                            <label for="confirmar_contraseña" class="form-label required">
+                            <label for="confirmar_contraseña"
+                                class="form-label @if ($modo == 'create') required @endif">
                                 Confirmación de Contraseña
                             </label>
                             <input type="password"
@@ -324,23 +329,3 @@
         </div>
     </div>
 </div>
-@push('scripts')
-    {{-- <script>
-    document.addEventListener('livewire:navigated', () => {
-        $(document).ready(function() {
-            // tom select ubigeo
-            var ubigeo = new TomSelect('#ubigeo', {
-                create: false,
-                sortField: {
-                    field: 'text',
-                    direction: 'asc'
-                },
-                placeholder: 'Seleccione un ubigeo'
-            });
-            $('#ubigeo').on('change', function(event) {
-                @this.set('ubigeo', ubigeo.getValue());
-            });
-        });
-    });
-</script> --}}
-@endpush

@@ -88,7 +88,7 @@ class Persona extends Model
     }
 
     public function getAvatarAttribute(): string {
-        return $this->usuario_avatar ?? 'https://ui-avatars.com/api/?name=' . $this->solo_primeros_nombres . '&size=64&&color=FFFFFF&background=0ea5e9&bold=true';
+        return $this->usuario->usuario_avatar ?? 'https://ui-avatars.com/api/?name=' . $this->solo_primeros_nombres . '&size=64&&color=FFFFFF&background=0ea5e9&bold=true';
     }
 
     protected static function boot() {

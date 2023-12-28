@@ -49,6 +49,7 @@ class Index extends Component
     public $estado;
     #[Validate('nullable|image|max:4096')]
     public $avatar;
+    public $avatar_temp;
     #[Validate('required|exists:rol,rol_id')]
     public $rol;
 
@@ -70,6 +71,7 @@ class Index extends Component
             'confirmar_contraseña',
             'estado',
             'avatar',
+            'avatar_temp',
             'rol'
         ]);
         $this->resetErrorBag();
@@ -87,10 +89,11 @@ class Index extends Component
             $this->modo = 'edit';
             $this->titulo_modal = 'Editar asigación de usuario';
             $this->boton_modal = 'Guardar cambios';
+            $this->usuario_id = $usuario->usuario_id;
             $this->correo_electronico = $usuario->usuario_correo;
             $this->estado = $usuario->usuario_estado == 1 ? true : false;
             $this->rol = $usuario->rol_id;
-            $this->avatar = $usuario->usuario_avatar;
+            $this->avatar_temp = $usuario->usuario_avatar;
         } else {
             $this->modo = 'create';
             $this->titulo_modal = 'Crear asigación de usuario';
@@ -116,13 +119,17 @@ class Index extends Component
         if ($this->modo == 'create') {
             $usuario = new Usuario();
             $usuario->usuario_correo = $this->correo_electronico;
-            $usuario->usuario_contraseña = Hash::make($this->contraseña);
+            $usuario->usuario_password = Hash::make($this->contraseña);
             if ($this->avatar) {
-                // guardamos la imagen
+                $path = 'files/images/';
+                $filename = time() . $this->persona_id . uniqid() . '.' . $this->avatar->getClientOriginalExtension();
+                $this->avatar->storeAs($path, $filename, 'public_file');
+                $usuario->usuario_avatar = $path . $filename;
             }
             $usuario->usuario_estado = $this->estado;
             $usuario->persona_id = $this->persona_id;
             $usuario->rol_id = $this->rol;
+            $usuario->save();
             // mostramos mensaje
             $this->dispatch(
                 'toast-basico',
@@ -133,13 +140,22 @@ class Index extends Component
             $usuario = Usuario::where('persona_id', $this->persona_id)->first();
             $usuario->usuario_correo = $this->correo_electronico;
             if ($this->contraseña) {
-                $usuario->usuario_contraseña = Hash::make($this->contraseña);
+                $usuario->usuario_password = Hash::make($this->contraseña);
             }
             if ($this->avatar) {
-                // guardamos la imagen
+                // verificamos si existe una imagen anterior
+                if ($usuario->usuario_avatar) {
+                    // eliminamos la imagen anterior
+                    unlink(public_path($usuario->usuario_avatar));
+                }
+                $path = 'files/images/';
+                $filename = time() . $this->persona_id . uniqid() . '.' . $this->avatar->getClientOriginalExtension();
+                $this->avatar->storeAs($path, $filename, 'public_file');
+                $usuario->usuario_avatar = $path . $filename;
             }
             $usuario->usuario_estado = $this->estado;
             $usuario->rol_id = $this->rol;
+            $usuario->save();
             // mostramos mensaje
             $this->dispatch(
                 'toast-basico',
