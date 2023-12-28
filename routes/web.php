@@ -24,19 +24,26 @@ Route::group(['middleware' => ['auth']], function () {
         ->name('home');
     // CONFIGURACIÓN DE PERSONAS
     Route::get('/persona', PersonaIndex::class)
+        ->middleware('permiso:persona-index')
         ->name('persona');
     Route::get('/persona/create', PersonaCreate::class)
+        ->middleware('permiso:persona-create')
         ->name('persona-create');
     Route::get('/persona/{persona_id}/edit', PersonaCreate::class)
+        ->middleware('permiso:persona-edit')
         ->name('persona-edit');
     // CONFIGURACIÓN DE ROLES
     Route::get('/configuracion/roles', RolIndex::class)
+        ->middleware('permiso:rol-index')
         ->name('configuracion-rol');
     Route::get('/configuracion/rol/create', RolCreate::class)
+        ->middleware('permiso:rol-create')
         ->name('configuracion-rol-create');
     Route::get('/configuracion/rol/{rol_id}/edit', RolCreate::class)
+        ->middleware('permiso:rol-edit')
         ->name('configuracion-rol-edit');
     // CONFIGURACIÓN DE PERMISOS
     Route::get('/configuracion/permisos', PermisoIndex::class)
+        ->middleware('permiso:permiso-index')
         ->name('configuracion-permiso');
 });

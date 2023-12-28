@@ -94,57 +94,66 @@
                         </span>
                     </a>
                 </li>
-                <li class="nav-item {{ request()->routeIs('persona*') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('persona') }}">
-                        <span class="nav-link-icon d-md-none d-lg-inline-block">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
-                                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-                            </svg>
-                        </span>
-                        <span class="nav-link-title">
-                            Personas
-                        </span>
-                    </a>
-                </li>
-                <li
-                    class="nav-item {{ request()->routeIs('configuracion-rol*') || request()->routeIs('configuracion-permiso') ? 'active' : '' }} dropdown">
-                    <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown"
-                        data-bs-auto-close="false" role="button" aria-expanded="true">
-                        <span class="nav-link-icon d-md-none d-lg-inline-block">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path
-                                    d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z">
-                                </path>
-                                <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
-                            </svg>
-                        </span>
-                        <span class="nav-link-title">
-                            Configuración
-                        </span>
-                    </a>
-                    <div
-                        class="dropdown-menu {{ request()->routeIs('configuracion-rol*') || request()->routeIs('configuracion-permiso') ? 'show' : '' }}">
-                        <div class="dropdown-menu-columns">
-                            <div class="dropdown-menu-column">
-                                <a class="dropdown-item {{ request()->routeIs('configuracion-rol*') ? 'active fw-medium' : '' }}"
-                                    href="{{ route('configuracion-rol') }}">
-                                    Roles
-                                </a>
-                                <a class="dropdown-item {{ request()->routeIs('configuracion-permiso') ? 'active fw-medium' : '' }}"
-                                    href="{{ route('configuracion-permiso') }}">
-                                    Permisos
-                                </a>
+                @if (auth()->user()->permiso('persona-index'))
+                    <li class="nav-item {{ request()->routeIs('persona*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('persona') }}">
+                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                                    <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                                </svg>
+                            </span>
+                            <span class="nav-link-title">
+                                Personas
+                            </span>
+                        </a>
+                    </li>
+                @endif
+                @if (auth()->user()->permiso('rol-index') ||
+                        auth()->user()->permiso('permiso-index'))
+                    <li
+                        class="nav-item {{ request()->routeIs('configuracion-rol*') || request()->routeIs('configuracion-permiso') ? 'active' : '' }} dropdown">
+                        <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown"
+                            data-bs-auto-close="false" role="button" aria-expanded="true">
+                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path
+                                        d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z">
+                                    </path>
+                                    <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
+                                </svg>
+                            </span>
+                            <span class="nav-link-title">
+                                Configuración
+                            </span>
+                        </a>
+                        <div
+                            class="dropdown-menu {{ request()->routeIs('configuracion-rol*') || request()->routeIs('configuracion-permiso') ? 'show' : '' }}">
+                            <div class="dropdown-menu-columns">
+                                <div class="dropdown-menu-column">
+                                    @if (auth()->user()->permiso('rol-index'))
+                                        <a class="dropdown-item {{ request()->routeIs('configuracion-rol*') ? 'active fw-medium' : '' }}"
+                                            href="{{ route('configuracion-rol') }}">
+                                            Roles
+                                        </a>
+                                    @endif
+                                    @if (auth()->user()->permiso('permiso-index'))
+                                        <a class="dropdown-item {{ request()->routeIs('configuracion-permiso') ? 'active fw-medium' : '' }}"
+                                            href="{{ route('configuracion-permiso') }}">
+                                            Permisos
+                                        </a>
+                                    @endif
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </li>
+                    </li>
+                @endif
                 <hr class="ms-lg-3 mt-3 mb-3">
             </ul>
         </div>

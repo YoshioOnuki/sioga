@@ -15,25 +15,27 @@
                 </div>
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
-                        <a href="{{ route('persona-create') }}" class="btn btn-primary d-none d-sm-inline-block">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M12 5l0 14" />
-                                <path d="M5 12l14 0" />
-                            </svg>
-                            Crear persona
-                        </a>
-                        <a href="{{ route('persona-create') }}" class="btn btn-primary d-sm-none btn-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M12 5l0 14" />
-                                <path d="M5 12l14 0" />
-                            </svg>
-                        </a>
+                        @if (auth()->user()->permiso('persona-create'))
+                            <a href="{{ route('persona-create') }}" class="btn btn-primary d-none d-sm-inline-block">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M12 5l0 14" />
+                                    <path d="M5 12l14 0" />
+                                </svg>
+                                Crear persona
+                            </a>
+                            <a href="{{ route('persona-create') }}" class="btn btn-primary d-sm-none btn-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M12 5l0 14" />
+                                    <path d="M5 12l14 0" />
+                                </svg>
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -138,15 +140,19 @@
                                                         class="btn btn-outline-cyan btn-sm">
                                                         Asignar Usuario
                                                     </button>
-                                                    <a href="{{ route('persona-edit', ['persona_id' => $item->persona_id]) }}"
-                                                        class="btn btn-outline-azure btn-sm">
-                                                        Editar
-                                                    </a>
-                                                    <button type="button" class="btn btn-sm btn-outline-danger"
-                                                        disabled wire:confirm="¿Quieres eliminar este persona?"
-                                                        wire:click="delete({{ $item->persona_id }})">
-                                                        Eliminar
-                                                    </button>
+                                                    @if (auth()->user()->permiso('persona-edit'))
+                                                        <a href="{{ route('persona-edit', ['persona_id' => $item->persona_id]) }}"
+                                                            class="btn btn-outline-azure btn-sm">
+                                                            Editar
+                                                        </a>
+                                                    @endif
+                                                    @if (auth()->user()->permiso('persona-delete'))
+                                                        <button type="button" class="btn btn-sm btn-outline-danger"
+                                                            disabled wire:confirm="¿Quieres eliminar este persona?"
+                                                            wire:click="delete({{ $item->persona_id }})">
+                                                            Eliminar
+                                                        </button>
+                                                    @endif
                                                 </div>
                                             </td>
                                         </tr>
@@ -218,11 +224,9 @@
                     <div class="row g-3">
                         <div class="col-lg-12 mt-2 text-center">
                             @if ($avatar)
-                                <img src="{{ $avatar->temporaryUrl() }}" alt="avatar"
-                                    class="avatar avatar-lg">
+                                <img src="{{ $avatar->temporaryUrl() }}" alt="avatar" class="avatar avatar-lg">
                             @elseif ($avatar_temp)
-                                <img src="{{ asset($avatar_temp) }}" alt="avatar"
-                                    class="avatar avatar-lg">
+                                <img src="{{ asset($avatar_temp) }}" alt="avatar" class="avatar avatar-lg">
                             @else
                                 @php
                                     $persona = App\Models\Persona::find($persona_id);

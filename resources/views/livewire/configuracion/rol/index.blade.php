@@ -17,26 +17,29 @@
                 </div>
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
-                        <a href="{{ route('configuracion-rol-create') }}"
-                            class="btn btn-primary d-none d-sm-inline-block">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M12 5l0 14" />
-                                <path d="M5 12l14 0" />
-                            </svg>
-                            Crear rol
-                        </a>
-                        <a href="{{ route('configuracion-rol-create') }}" class="btn btn-primary d-sm-none btn-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M12 5l0 14" />
-                                <path d="M5 12l14 0" />
-                            </svg>
-                        </a>
+                        @if (auth()->user()->permiso('rol-create'))
+                            <a href="{{ route('configuracion-rol-create') }}"
+                                class="btn btn-primary d-none d-sm-inline-block">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M12 5l0 14" />
+                                    <path d="M5 12l14 0" />
+                                </svg>
+                                Crear rol
+                            </a>
+                            <a href="{{ route('configuracion-rol-create') }}"
+                                class="btn btn-primary d-sm-none btn-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M12 5l0 14" />
+                                    <path d="M5 12l14 0" />
+                                </svg>
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -115,15 +118,19 @@
                                             </td>
                                             <td>
                                                 <div class="btn-list flex-nowrap justify-content-end">
-                                                    <a href="{{ route('configuracion-rol-edit', ['rol_id' => $item->rol_id]) }}"
-                                                        class="btn btn-outline-azure btn-sm">
-                                                        Editar
-                                                    </a>
-                                                    <button type="button" class="btn btn-sm btn-outline-danger"
-                                                        wire:confirm="¿Quieres eliminar este rol?"
-                                                        wire:click="delete({{ $item->rol_id }})">
-                                                        Eliminar
-                                                    </button>
+                                                    @if (auth()->user()->permiso('rol-edit'))
+                                                        <a href="{{ route('configuracion-rol-edit', ['rol_id' => $item->rol_id]) }}"
+                                                            class="btn btn-outline-azure btn-sm">
+                                                            Editar
+                                                        </a>
+                                                    @endif
+                                                    @if (auth()->user()->permiso('rol-delete'))
+                                                        <button type="button" class="btn btn-sm btn-outline-danger"
+                                                            wire:confirm="¿Quieres eliminar este rol?"
+                                                            wire:click="delete({{ $item->rol_id }})">
+                                                            Eliminar
+                                                        </button>
+                                                    @endif
                                                 </div>
                                             </td>
                                         </tr>

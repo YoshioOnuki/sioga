@@ -24,23 +24,40 @@ class Usuario extends Authenticatable
         'rol_id'
     ];
 
-    public function persona(): BelongsTo {
+    public function persona(): BelongsTo
+    {
         return $this->belongsTo(Persona::class, 'persona_id');
     }
 
-    public function rol(): BelongsTo {
+    public function rol(): BelongsTo
+    {
         return $this->belongsTo(Rol::class, 'rol_id');
     }
 
-    public function getAvatarAttribute(): string {
+    public function permiso($permiso): bool
+    {
+        $rol = $this->rol;
+        $permisos = $rol->permisos;
+        foreach ($permisos as $p) {
+            if ($p->permiso_nombre == $permiso) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function getAvatarAttribute(): string
+    {
         return $this->persona->avatar;
     }
 
-    public function getEsAdministradorAttribute(): bool {
+    public function getEsAdministradorAttribute(): bool
+    {
         return $this->rol_id === 1;
     }
 
-    protected static function boot() {
+    protected static function boot()
+    {
         parent::boot();
 
         static::creating(function ($model) {
