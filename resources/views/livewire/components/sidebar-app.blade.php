@@ -5,7 +5,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <h1 class="navbar-brand">
-            <a href="#" class="d-flex align-items-center justify-content-center gap-2">
+            <a href="{{ route('home') }}" class="d-flex align-items-center justify-content-center gap-2">
                 <img src="{{ asset('media/logo-dark.PNG') }}" alt="Logo Unia"
                     class="navbar-brand-image rounded hide-theme-light">
                 <img src="{{ asset('media/logo-light.PNG') }}" alt="Logo Unia"
