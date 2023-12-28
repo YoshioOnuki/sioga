@@ -155,12 +155,13 @@
                                                     </div>
                                                 @enderror
                                             </div>
-                                            <div class="col-lg-12">
+                                            <div class="col-lg-12" wire:ignore>
                                                 <label for="ubigeo" class="form-label required">
                                                     Ubigeo
                                                 </label>
                                                 <select class="form-select @error('ubigeo') is-invalid @enderror"
-                                                    id="ubigeo" wire:model.live="ubigeo">
+                                                    id="ubigeo" wire:model.live="ubigeo"
+                                                    placeholder="Seleccione un ubigeo">
                                                     <option value="">
                                                         Seleccione un ubigeo
                                                     </option>
@@ -256,72 +257,76 @@
                                 </div>
                             </div>
                             @if ($tipo_perfil == 1)
-                            <div class="card-body">
-                                <div class="row py-2">
-                                    <label class="col-3 col-form-label">
-                                        Perfil de Tesista
-                                    </label>
-                                    <div class="col">
-                                        <div class="row g-3">
-                                            <div class="col-lg-12">
-                                                <label for="grado_academico_file" class="form-label required">
-                                                    Grado Academico
-                                                </label>
-                                                <input type="file"
-                                                    class="form-control @error('grado_academico_file') is-invalid @enderror"
-                                                    id="grado_academico_file" wire:model.live="grado_academico_file"
-                                                    accept="application/pdf" />
-                                                @error('grado_academico_file')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
+                                <div class="card-body">
+                                    <div class="row py-2">
+                                        <label class="col-3 col-form-label">
+                                            Perfil de Tesista
+                                        </label>
+                                        <div class="col">
+                                            <div class="row g-3">
+                                                <div class="col-lg-12">
+                                                    <label for="grado_academico_file" class="form-label required">
+                                                        Grado Academico
+                                                    </label>
+                                                    <input type="file"
+                                                        class="form-control @error('grado_academico_file') is-invalid @enderror"
+                                                        id="grado_academico_file"
+                                                        wire:model.live="grado_academico_file"
+                                                        accept="application/pdf" />
+                                                    @error('grado_academico_file')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
                                                 </div>
-                                                @enderror
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <label for="programa" class="form-label required">
-                                                    Programa
-                                                </label>
-                                                <select class="form-select @error('programa') is-invalid @enderror" id="programa"
-                                                    wire:model.live="programa">
-                                                    <option value="">
-                                                        Seleccione un programa
-                                                    </option>
-                                                </select>
-                                                @error('programa')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
+                                                <div class="col-lg-12">
+                                                    <label for="programa" class="form-label required">
+                                                        Programa
+                                                    </label>
+                                                    <select
+                                                        class="form-select @error('programa') is-invalid @enderror"
+                                                        id="programa" wire:model.live="programa">
+                                                        <option value="">
+                                                            Seleccione un programa
+                                                        </option>
+                                                    </select>
+                                                    @error('programa')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
                                                 </div>
-                                                @enderror
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             @endif
                             @if ($tipo_perfil == 2)
-                            <div class="card-body">
-                                <div class="row py-2">
-                                    <label class="col-3 col-form-label">
-                                        Perfil de Docente
-                                    </label>
-                                    <div class="col">
-                                        <div class="row g-3">
-                                            <div class="col-lg-12">
-                                                <label for="cv_file" class="form-label required">
-                                                    Curriculum Vitae
-                                                </label>
-                                                <input type="file" class="form-control @error('cv_file') is-invalid @enderror"
-                                                    id="cv_file" wire:model.live="cv_file" accept="application/pdf" />
-                                                @error('cv_file')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
+                                <div class="card-body">
+                                    <div class="row py-2">
+                                        <label class="col-3 col-form-label">
+                                            Perfil de Docente
+                                        </label>
+                                        <div class="col">
+                                            <div class="row g-3">
+                                                <div class="col-lg-12">
+                                                    <label for="cv_file" class="form-label required">
+                                                        Curriculum Vitae
+                                                    </label>
+                                                    <input type="file"
+                                                        class="form-control @error('cv_file') is-invalid @enderror"
+                                                        id="cv_file" wire:model.live="cv_file"
+                                                        accept="application/pdf" />
+                                                    @error('cv_file')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
                                                 </div>
-                                                @enderror
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             @endif
                             <div class="card-footer text-end">
                                 <a href="{{ route('persona') }}" class="btn btn-secondary">
@@ -338,3 +343,27 @@
         </div>
     </div>
 </div>
+@script
+    <script>
+        $(document).ready(function() {
+            // asignar tomselect al select con id ubigeo
+            new TomSelect("#ubigeo", {
+                create: false,
+                valueField: 'ubigeo_id',
+                persist: false,
+                allowEmptyOption: true,
+            });
+            // Livewire.hook('morph.updated', ({
+            //     el,
+            //     component
+            // }) => {
+            //     new TomSelect("#ubigeo", {
+            //         create: false,
+            //         valueField: 'ubigeo_id',
+            //         persist: false,
+            //         allowEmptyOption: true,
+            //     });
+            // })
+        });
+    </script>
+@endscript
