@@ -5,15 +5,13 @@ namespace App\Livewire\Configuracion\Rol;
 use App\Models\Permiso;
 use App\Models\Rol;
 use Livewire\Attributes\Layout;
-use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
-use App\Livewire\Configuracion\Rol\Index as RolIndex;
 
 #[Layout('components.layouts.app')]
 class Create extends Component
 {
-    // variables 
+    // variables
     public $titulo = 'Crear rol';
     public $modo = 'create';
     public $rol_id;

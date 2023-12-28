@@ -2,12 +2,8 @@
 
 namespace App\Livewire\Persona;
 
-use App\Models\Genero;
-use App\Models\GradoAcademico;
 use App\Models\Persona;
 use App\Models\Rol;
-use App\Models\TipoDocumento;
-use App\Models\Ubigeo;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\Layout;

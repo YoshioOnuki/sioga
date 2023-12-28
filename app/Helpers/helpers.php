@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Rol;
 use App\Models\Usuario;
 
 function formatFechaHoras($fecha) {
