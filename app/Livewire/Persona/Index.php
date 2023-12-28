@@ -173,7 +173,7 @@ class Index extends Component
     {
         $personas = Persona::search($this->search)
             ->where('persona_estado', 1)
-            ->where('persona_id', '!=', auth()->user()->persona->persona_id)
+            // ->where('persona_id', '!=', auth()->user()->persona->persona_id)
             ->paginate(10);
         $roles = Rol::where('rol_estado', 1)->get();
         return view('livewire.persona.index', [
