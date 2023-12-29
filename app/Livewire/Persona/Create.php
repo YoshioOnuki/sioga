@@ -5,15 +5,18 @@ namespace App\Livewire\Persona;
 use App\Models\Genero;
 use App\Models\GradoAcademico;
 use App\Models\Persona;
+use App\Models\Programa;
 use App\Models\TipoDocumento;
 use App\Models\Ubigeo;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 #[Layout('components.layouts.app')]
 class Create extends Component
 {
+    use WithFileUploads;
     // variables
     public $titulo = 'Crear persona';
     public $modo = 'create';
@@ -41,11 +44,14 @@ class Create extends Component
     public $tipo_perfil = 0;
     #[Validate('nullable|boolean')]
     public $estado;
-    #[Validate('nullable|file|max:2048|mimes:pdf')]
+    #[Validate('nullable|file|max:4096|mimes:pdf')]
     public $grado_academico_file;
     #[Validate('nullable|exists:programa,programa_id')]
+    public $programa_model = [];
     public $programa;
-    #[Validate('nullable|file|max:2048|mimes:pdf')]
+    #[Validate('nullable|numeric')]
+    public $tipo_programa;
+    #[Validate('nullable|file|max:4096|mimes:pdf')]
     public $cv_file;
 
     public function mount()
@@ -78,6 +84,19 @@ class Create extends Component
         }
     }
 
+    public function updatedTipoPrograma($value)
+    {
+        if ($value == null || $value == '') {
+            $this->programa = null;
+            $this->programa_model = [];
+            return;
+        }
+        $this->programa = null;
+        $this->programa_model = Programa::where('programa_tipo', $value == 1 ? 'MAESTRIA' : 'DOCTORADO')
+            ->orderBy('programa_nombre', 'asc')
+            ->get();
+    }
+
     public function guardar()
     {
         // validamos los campos
@@ -91,9 +110,10 @@ class Create extends Component
             'grado_academico' => 'required|exists:grado_academico,grado_academico_id',
             'ubigeo' => 'required|exists:ubigeo,ubigeo_id',
             'estado' => 'nullable|boolean',
-            'grado_academico_file' => $this->tipo_perfil == 1 ? 'required|file|max:2048|mimes:pdf' : 'nullable',
+            'grado_academico_file' => $this->tipo_perfil == 1 ? 'required|file|max:4096|mimes:pdf' : 'nullable',
             'programa' => $this->tipo_perfil == 1 ? 'required|exists:programa,programa_id' : 'nullable',
-            'cv_file' => $this->tipo_perfil == 2 ? 'required|file|max:2048|mimes:pdf' : 'nullable',
+            'tipo_programa' => $this->tipo_perfil == 1 ? 'required|numeric' : 'nullable',
+            'cv_file' => $this->tipo_perfil == 2 ? 'required|file|max:4096|mimes:pdf' : 'nullable',
         ]);
         // guardamos los datos
         if ($this->modo == 'create') {
@@ -110,16 +130,24 @@ class Create extends Component
             $persona->save();
             // si es tesista guardamos sus datos
             if ($this->tipo_perfil == 1) {
-                // $persona->tesista()->create([
-                //     'programa_id' => $this->programa,
-                //     'tesista_grado_path' => $this->grado_academico_file->store('public/tesista/grado_academico'),
-                // ]);
-                // TODO: guardar tesista
-            } elseif ($this->tipo_perfil == 2) {
-                // $persona->docente()->create([
-                //     'docente_cv_path' => $this->cv_file->store('public/docente/cv'),
-                // ]);
-                // TODO: guardar docente
+                if ($this->grado_academico_file) {
+                    $path = 'files/archivos/';
+                    $filename = time() . $persona->persona_id . uniqid() . '.' . $this->grado_academico_file->getClientOriginalExtension();
+                    $this->grado_academico_file->storeAs($path, $filename, 'public_file');
+                }
+                $persona->tesista()->create([
+                    'programa_id' => $this->programa,
+                    'tesista_grado_path' => $path . $filename,
+                ]);
+            } elseif ($this->tipo_perfil == 2) { // si es docente guardamos sus datos
+                if ($this->cv_file) {
+                    $path = 'files/archivos/';
+                    $filename = time() . $persona->persona_id . uniqid() . '.' . $this->cv_file->getClientOriginalExtension();
+                    $this->cv_file->storeAs($path, $filename, 'public_file');
+                }
+                $persona->docente()->create([
+                    'docente_cv_path' => $path . $filename,
+                ]);
             }
             // guardamos en sesion el tipo de mensaje y el mensaje
             session([
@@ -141,14 +169,24 @@ class Create extends Component
             $persona->save();
             // si es tesista guardamos sus datos
             if ($this->tipo_perfil == 1) {
-                // $persona->tesista()->update([
-                //     'programa_id' => $this->programa,
-                //     'tesista_grado_path' => $this->grado_academico_file->store('public/tesista/grado_academico'),
-                // ]);
-            } elseif ($this->tipo_perfil == 2) {
-                // $persona->docente()->update([
-                //     'docente_cv_path' => $this->cv_file->store('public/docente/cv'),
-                // ]);
+                if ($this->grado_academico_file) {
+                    $path = 'files/archivos/';
+                    $filename = time() . $persona->persona_id . uniqid() . '.' . $this->grado_academico_file->getClientOriginalExtension();
+                    $this->grado_academico_file->storeAs($path, $filename, 'public_file');
+                }
+                $persona->tesista()->create([
+                    'programa_id' => $this->programa,
+                    'tesista_grado_path' => $path . $filename,
+                ]);
+            } elseif ($this->tipo_perfil == 2) { // si es docente guardamos sus datos
+                if ($this->cv_file) {
+                    $path = 'files/archivos/';
+                    $filename = time() . $persona->persona_id . uniqid() . '.' . $this->cv_file->getClientOriginalExtension();
+                    $this->cv_file->storeAs($path, $filename, 'public_file');
+                }
+                $persona->docente()->create([
+                    'docente_cv_path' => $path . $filename,
+                ]);
             }
             // guardamos en sesion el tipo de mensaje y el mensaje
             session([
@@ -171,7 +209,7 @@ class Create extends Component
             'tipo_documento_model' => $tipo_documento_model,
             'genero_model' => $genero_model,
             'grado_academico_model' => $grado_academico_model,
-            'ubigeo_model' => $ubigeo_model,
+            'ubigeo_model' => $ubigeo_model
         ])->title($this->titulo);
     }
 }

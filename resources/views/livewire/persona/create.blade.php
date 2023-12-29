@@ -280,15 +280,52 @@
                                                     @enderror
                                                 </div>
                                                 <div class="col-lg-12">
+                                                    <label for="tipo_programa" class="form-label required">
+                                                        Tipo Programa
+                                                    </label>
+                                                    <select
+                                                        class="form-select @error('tipo_programa') is-invalid @enderror"
+                                                        id="tipo_programa" wire:model.live="tipo_programa"
+                                                        placeholder="Seleccione un tipo programa">
+                                                        <option value="">
+                                                            Seleccione un tipo programa
+                                                        </option>
+                                                        <option value="1">
+                                                            Maestria
+                                                        </option>
+                                                        <option value="2">
+                                                            Doctorado
+                                                        </option>
+                                                    </select>
+                                                    @error('tipo_programa')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-lg-12">
                                                     <label for="programa" class="form-label required">
                                                         Programa
                                                     </label>
                                                     <select
                                                         class="form-select @error('programa') is-invalid @enderror"
-                                                        id="programa" wire:model.live="programa">
+                                                        id="programa" wire:model.live="programa"
+                                                        placeholder="Seleccione un programa">
                                                         <option value="">
                                                             Seleccione un programa
                                                         </option>
+                                                        @foreach ($programa_model as $item)
+                                                            <option value="{{ $item->programa_id }}">
+                                                                @if ($item->programa_mencion)
+                                                                    {{ $item->programa_tipo }} //
+                                                                    {{ $item->programa_nombre }} //
+                                                                    {{ $item->programa_mencion }}
+                                                                @else
+                                                                    {{ $item->programa_tipo }} //
+                                                                    {{ $item->programa_nombre }}
+                                                                @endif
+                                                            </option>
+                                                        @endforeach
                                                     </select>
                                                     @error('programa')
                                                         <div class="invalid-feedback">
@@ -345,25 +382,27 @@
 </div>
 @script
     <script>
-        $(document).ready(function() {
-            // asignar tomselect al select con id ubigeo
-            new TomSelect("#ubigeo", {
-                create: false,
-                valueField: 'ubigeo_id',
-                persist: false,
-                allowEmptyOption: true,
+        document.addEventListener('livewire:navigated', () => {
+            $(document).ready(function() {
+                // asignar tomselect al select con id ubigeo
+                new TomSelect("#ubigeo", {
+                    create: false,
+                    valueField: 'ubigeo_id',
+                    persist: false,
+                    allowEmptyOption: true,
+                });
+                // Livewire.hook('morph.updated', ({
+                //     el,
+                //     component
+                // }) => {
+                //     new TomSelect("#ubigeo", {
+                //         create: false,
+                //         valueField: 'ubigeo_id',
+                //         persist: false,
+                //         allowEmptyOption: true,
+                //     });
+                // })
             });
-            // Livewire.hook('morph.updated', ({
-            //     el,
-            //     component
-            // }) => {
-            //     new TomSelect("#ubigeo", {
-            //         create: false,
-            //         valueField: 'ubigeo_id',
-            //         persist: false,
-            //         allowEmptyOption: true,
-            //     });
-            // })
-        });
+        })
     </script>
 @endscript
