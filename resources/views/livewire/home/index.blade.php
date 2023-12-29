@@ -17,14 +17,14 @@
     </div>
     <div class="page-body">
         <div class="container-xl">
-            <div class="card card-stacked">
+            <div class="card card-stacked animate__animated animate__fadeIn animate__faster">
                 <div class="card-body">
                     <div
-                        class="d-flex flex-column align-items-center gap-5 my-7 animate__animated animate__fadeIn animate__faster">
-                        <span class="fw-bold" style="font-size: 2.5rem;">
+                        class="d-flex flex-column align-items-center justify-content-center gap-5 my-7">
+                        <span class="fw-bold text-center" style="font-size: 2.5rem;">
                             Bienvenido al Sistema de Obtención de Grados Académicos
                         </span>
-                        <div class="d-flex justify-content-center align-items-center gap-5">
+                        <div class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-5">
                             <img src="{{ asset('media/unu.png') }}" alt="logo unia" height="180px">
                             <img src="{{ asset('media/logo-dark.PNG') }}" alt="Logo Sioga"
                                 class="rounded hide-theme-light" height="180px">
@@ -32,9 +32,14 @@
                                 class="rounded hide-theme-dark" height="180px">
                             <img src="{{ asset('media/logo-pg.png') }}" alt="logo unia" height="180px">
                         </div>
-                        <span class="fw-semibold" style="font-size: 1.5rem;">
-                            Escuela de Posgrado - Universidad Nacional de Ucayali
-                        </span>
+                        <div class="d-flex flex-column align-items-center gap-2">
+                            <span class="fw-semibold" style="font-size: 1.5rem;">
+                                Escuela de Posgrado
+                            </span>
+                            <span class="fw-semibold" style="font-size: 1.5rem;">
+                                Universidad Nacional de Ucayali
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
