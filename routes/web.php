@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\Home as Home;
 use App\Livewire\Auth\Login as Login;
 use App\Livewire\Home\Index as HomeIndex;
+use App\Livewire\Perfil\Index as PerfilIndex;
+use App\Livewire\Perfil\Edit as PerfilEdit;
 use App\Livewire\Persona\Index as PersonaIndex;
 use App\Livewire\Persona\Create as PersonaCreate;
 use App\Livewire\Configuracion\Rol\Index as RolIndex;
@@ -19,9 +21,14 @@ Route::get('/login', Login::class)
     ->name('login');
 // RUTA DE LOGOUT
 Route::group(['middleware' => ['auth']], function () {
-    // HOME ADMINISTRADOR
+    // HOME
     Route::get('/home', HomeIndex::class)
         ->name('home');
+    // PERFIL
+    Route::get('/perfil', PerfilIndex::class)
+        ->name('perfil');
+    Route::get('/perfil/edit', PerfilEdit::class)
+        ->name('perfil-edit');
     // CONFIGURACIÓN DE PERSONAS
     Route::get('/persona', PersonaIndex::class)
         ->middleware('permiso:persona-index')
