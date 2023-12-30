@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Ubigeo;
 use App\Models\Usuario;
 
 function formatFechaHoras($fecha)
@@ -24,7 +25,14 @@ function getColorRol($usuario_id)
         return 'bg-green-lt';
     } else if ($rol->rol_nombre == 'TESISTA') {
         return 'bg-pink-lt';
-    } else if ($rol->rol_nombre == 'COMISIÓN') {
+    } else if ($rol->rol_nombre == 'COMISION') {
         return 'bg-teal-lt';
     }
+}
+
+function getUbigeo($ubigeo_id)
+{
+    $ubigeo = Ubigeo::find($ubigeo_id);
+    $ubigeo = $ubigeo->ubigeo_departamento . ' / ' . $ubigeo->ubigeo_provincia . ' / ' . $ubigeo->ubigeo_distrito;
+    return $ubigeo;
 }
