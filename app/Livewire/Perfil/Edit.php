@@ -69,7 +69,7 @@ class Edit extends Component
             $usuario->usuario_password = Hash::make($this->contraseña);
         }
         if ($this->avatar) {
-            $nombre_db = subirAvatar($this->avatar, $this->persona_id);
+            $nombre_db = subirAvatar($this->avatar, $usuario->persona_id);
             $usuario->usuario_avatar = $nombre_db;
         }
         $usuario->save();
