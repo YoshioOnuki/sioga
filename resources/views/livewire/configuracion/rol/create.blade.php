@@ -107,7 +107,7 @@
                                 </div>
                             </div>
                             <div class="card-footer text-end">
-                                <a href="{{ route('configuracion-rol') }}" class="btn btn-secondary">
+                                <a href="{{ route('configuracion-rol') }}" class="btn btn-outline-secondary">
                                     Regresar
                                 </a>
                                 <button type="submit" class="btn btn-primary">
