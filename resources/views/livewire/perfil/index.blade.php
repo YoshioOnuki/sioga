@@ -18,6 +18,9 @@
     </div>
     <div class="page-body">
         <div class="container-xl">
+            @if (session('modo') === 'create' || session('modo') === 'edit')
+                <div wire:init="mostrar_toast"></div>
+            @endif
             <div class="row g-3">
                 <div class="col-lg-4">
                     <div class="card card-stacked animate__animated animate__fadeIn animate__faster">
@@ -164,7 +167,7 @@
                                 Información personal
                             </h3>
                             <div class="card-actions btn-actions">
-                                <a href="#"
+                                <a href="{{ route('perfil-edit', ['usuario_id' => auth()->user()->usuario_id]) }}"
                                     class="btn">
                                     Editar
                                 </a>

@@ -10,6 +10,16 @@ use Livewire\Component;
 #[Layout('components.layouts.app')]
 class Index extends Component
 {
+    public function mostrar_toast()
+    {
+        $this->dispatch(
+            'toast-basico',
+            mensaje: session('mensaje'),
+            type: session('tipo')
+        );
+        session()->forget(['modo', 'mensaje', 'tipo']);
+    }
+
     public function render()
     {
         return view('livewire.perfil.index');

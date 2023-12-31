@@ -151,10 +151,8 @@ class Index extends Component
             $usuario->usuario_correo = $this->correo_electronico;
             $usuario->usuario_password = Hash::make($this->contraseña);
             if ($this->avatar) {
-                $path = 'files/images/';
-                $filename = time() . $this->persona_id . uniqid() . '.' . $this->avatar->getClientOriginalExtension();
-                $this->avatar->storeAs($path, $filename, 'public_file');
-                $usuario->usuario_avatar = $path . $filename;
+                $nombre_db = subirAvatar($this->avatar, $this->persona_id);
+                $usuario->usuario_avatar = $nombre_db;
             }
             $usuario->usuario_estado = $this->estado;
             $usuario->persona_id = $this->persona_id;
@@ -173,15 +171,8 @@ class Index extends Component
                 $usuario->usuario_password = Hash::make($this->contraseña);
             }
             if ($this->avatar) {
-                // verificamos si existe una imagen anterior
-                if ($usuario->usuario_avatar) {
-                    // eliminamos la imagen anterior
-                    unlink(public_path($usuario->usuario_avatar));
-                }
-                $path = 'files/images/';
-                $filename = time() . $this->persona_id . uniqid() . '.' . $this->avatar->getClientOriginalExtension();
-                $this->avatar->storeAs($path, $filename, 'public_file');
-                $usuario->usuario_avatar = $path . $filename;
+                $nombre_db = subirAvatar($this->avatar, $this->persona_id);
+                $usuario->usuario_avatar = $nombre_db;
             }
             $usuario->usuario_estado = $this->estado;
             $usuario->rol_id = $this->rol;
