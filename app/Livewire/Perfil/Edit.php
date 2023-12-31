@@ -90,6 +90,30 @@ class Edit extends Component
         return redirect()->route('perfil', ['usuario_id' => $this->usuario_id]);
     }
 
+    public function eliminar_avatar()
+    {
+        // si ingreso un avatar, lo eliminamos
+        if ($this->avatar) {
+            $this->avatar = null;
+        }
+        // verificamos si tiene un avatar
+        if ($this->usuario->usuario_avatar) {
+            // eliminamos el avatar
+            if (file_exists(public_path($this->usuario->usuario_avatar))) {
+                unlink(public_path($this->usuario->usuario_avatar));
+            }
+            // eliminamos el nombre del avatar
+            $this->usuario->usuario_avatar = null;
+            $this->usuario->save();
+        }
+        // mostramos mensaje
+        $this->dispatch(
+            'toast-basico',
+            mensaje: 'El avatar se eliminó correctamente.',
+            type: 'success'
+        );
+    }
+
     public function render()
     {
         $ubigeo_model = Ubigeo::where('ubigeo_estado', 1)->get();
