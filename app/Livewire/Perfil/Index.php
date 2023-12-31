@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Perfil;
 
+use App\Models\Usuario;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -10,6 +11,23 @@ use Livewire\Component;
 #[Layout('components.layouts.app')]
 class Index extends Component
 {
+    public $usuario_id;
+    public $usuario;
+    public $tesista;
+    public $docente;
+
+    public function mount($usuario_id)
+    {
+        $this->usuario_id = $usuario_id;
+        $this->usuario = Usuario::find($usuario_id);
+        if ($this->usuario->persona->tesista) {
+            $this->tesista = $this->usuario->persona->tesista;
+        }
+        if ($this->usuario->persona->docente) {
+            $this->docente = $this->usuario->persona->docente;
+        }
+    }
+
     public function mostrar_toast()
     {
         $this->dispatch(

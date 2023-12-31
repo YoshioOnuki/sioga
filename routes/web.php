@@ -25,7 +25,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', HomeIndex::class)
         ->name('home');
     // PERFIL
-    Route::get('/perfil', PerfilIndex::class)
+    Route::get('/perfil/{usuario_id}', PerfilIndex::class)
         ->name('perfil');
     Route::get('/perfil/{usuario_id}/edit', PerfilEdit::class)
         ->name('perfil-edit');

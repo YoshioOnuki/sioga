@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 
@@ -45,12 +46,12 @@ class Persona extends Model
         return $this->belongsTo(Ubigeo::class, 'ubigeo_id');
     }
 
-    public function docente(): HasMany {
-        return $this->hasMany(Docente::class, 'persona_id');
+    public function docente(): HasOne {
+        return $this->hasOne(Docente::class, 'persona_id');
     }
 
-    public function tesista(): HasMany {
-        return $this->hasMany(Tesista::class, 'persona_id');
+    public function tesista(): HasOne {
+        return $this->hasOne(Tesista::class, 'persona_id');
     }
 
     public function usuario() {
@@ -89,14 +90,6 @@ class Persona extends Model
 
     public function getAvatarAttribute(): string {
         return $this->usuario->usuario_avatar ?? 'https://ui-avatars.com/api/?name=' . $this->solo_primeros_nombres . '&size=64&&color=FFFFFF&background=0ea5e9&bold=true';
-    }
-
-    public function es_tesista(): bool {
-        return $this->tesista->count() > 0;
-    }
-
-    public function es_docente(): bool {
-        return $this->docente->count() > 0;
     }
 
     protected static function boot() {
