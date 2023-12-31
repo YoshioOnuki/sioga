@@ -20,6 +20,13 @@ class Index extends Component
     {
         $this->usuario_id = $usuario_id;
         $this->usuario = Usuario::find($usuario_id);
+
+        if ($this->usuario->usuario_id != auth()->user()->usuario_id) {
+            if (auth()->user()->rol->rol_nombre != 'ADMINISTRADOR') {
+                abort(403, 'No tiene permisos para acceder a esta página.');
+            }
+        }
+
         if ($this->usuario->persona->tesista) {
             $this->tesista = $this->usuario->persona->tesista;
         }

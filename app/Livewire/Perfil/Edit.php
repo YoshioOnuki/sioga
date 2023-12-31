@@ -40,14 +40,14 @@ class Edit extends Component
     public function mount()
     {
         $usuario = Usuario::find($this->usuario_id);
-        if(!$usuario) {
+        if (!$usuario) {
             abort(404, 'Usuario no encontrado.');
         }
         $this->usuario_id = $usuario->usuario_id;
         $this->usuario = $usuario;
 
-        if ($usuario->rol->rol_nombre != 'ADMINISTRADOR') {
-            if ($usuario->usuario_id != auth()->user()->usuario_id) {
+        if ($usuario->usuario_id != auth()->user()->usuario_id) {
+            if (auth()->user()->rol->rol_nombre != 'ADMINISTRADOR') {
                 abort(403, 'No tiene permisos para acceder a esta página.');
             }
         }
