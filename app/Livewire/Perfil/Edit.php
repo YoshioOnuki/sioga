@@ -87,7 +87,7 @@ class Edit extends Component
             'mensaje' => 'Perfil actualizado correctamente.'
         ]);
         // redireccionamos
-        return redirect()->route('perfil');
+        return redirect()->route('perfil', ['usuario_id' => $this->usuario_id]);
     }
 
     public function render()
