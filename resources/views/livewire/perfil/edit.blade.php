@@ -6,7 +6,7 @@
                     <div class="page-pretitle">
                         <ol class="breadcrumb breadcrumb-arrows" aria-label="breadcrumbs">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('perfil') }}">Perfil</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('perfil', ['usuario_id' => $usuario_id]) }}">Perfil</a></li>
                             <li class="breadcrumb-item active" aria-current="page"><a href="#">Editar Perfil</a>
                             </li>
                         </ol>
@@ -179,7 +179,7 @@
                             </div>
                             <div class="card-footer bg-transparent mt-auto">
                                 <div class="btn-list justify-content-end">
-                                    <a href="{{ route('perfil') }}" class="btn btn-outline-secondary">
+                                    <a href="{{ route('perfil', ['usuario_id' => $usuario_id]) }}" class="btn btn-outline-secondary">
                                         Cancelar
                                     </a>
                                     <button type="submit" class="btn btn-primary">
