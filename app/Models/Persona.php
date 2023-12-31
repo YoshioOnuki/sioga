@@ -91,6 +91,14 @@ class Persona extends Model
         return $this->usuario->usuario_avatar ?? 'https://ui-avatars.com/api/?name=' . $this->solo_primeros_nombres . '&size=64&&color=FFFFFF&background=0ea5e9&bold=true';
     }
 
+    public function es_tesista(): bool {
+        return $this->tesista->count() > 0;
+    }
+
+    public function es_docente(): bool {
+        return $this->docente->count() > 0;
+    }
+
     protected static function boot() {
         parent::boot();
 
