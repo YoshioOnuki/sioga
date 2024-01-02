@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>SIOGA - Sistema de Obtención de Grado Académico - Escuela de Posgrado - UNU</title>
-    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('media/logo-dark.PNG') }}" type="image/x-icon">
 
     <!-- Favicons -->
     <link href="assets/img/favicon.png" rel="icon">
@@ -230,7 +230,7 @@
                             </div>
                             <h4><a href="">Visión</a></h4>
                             <p>
-                                La Escuela de Posgrado de la Universidad Nacional de Ucayali es referente nacional y 
+                                La Escuela de Posgrado de la Universidad Nacional de Ucayali es referente nacional y
                                 latinoamericano en el desarrollo de posgrado de alto nivel y excelencia académica en
                                 las áreas de competencia de la UNU. Es reconocida como institución nacional que
                                 desarrolla investigaciones y aporta nuevos conocimientos que promueven y es líder en el
