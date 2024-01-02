@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\Home as Home;
 use App\Livewire\Auth\Login as Login;
 use App\Livewire\Home\Index as HomeIndex;
+use App\Livewire\Home\HomeTesista as HomeTesistaIndex;
 use App\Livewire\Perfil\Index as PerfilIndex;
 use App\Livewire\Perfil\Edit as PerfilEdit;
 use App\Livewire\Persona\Index as PersonaIndex;
@@ -24,6 +25,9 @@ Route::group(['middleware' => ['auth']], function () {
     // HOME
     Route::get('/home', HomeIndex::class)
         ->name('home');
+    // HOME TESISTA
+    Route::get('/home/tesista', HomeTesistaIndex::class)
+        ->name('home-tesista');
     // PERFIL
     Route::get('/perfil', PerfilIndex::class)
         ->name('perfil');

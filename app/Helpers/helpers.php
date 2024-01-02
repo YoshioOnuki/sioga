@@ -36,3 +36,14 @@ function getUbigeo($ubigeo_id)
     $ubigeo = $ubigeo->ubigeo_departamento . ' / ' . $ubigeo->ubigeo_provincia . ' / ' . $ubigeo->ubigeo_distrito;
     return $ubigeo;
 }
+
+function isAdministrador($usuario_id)
+{
+    $usuario = Usuario::find($usuario_id);
+    $rol = $usuario->rol;
+    if ($rol->rol_nombre == 'ADMINISTRADOR') {
+        return true;
+    } else {
+        return false;
+    }
+}
