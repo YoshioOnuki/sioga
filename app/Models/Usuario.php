@@ -53,7 +53,7 @@ class Usuario extends Authenticatable
 
     public function getEsAdministradorAttribute(): bool
     {
-        return $this->rol_id === 1;
+        return $this->rol->rol_nombre === "ADMINISTRADOR";
     }
 
     protected static function boot()
