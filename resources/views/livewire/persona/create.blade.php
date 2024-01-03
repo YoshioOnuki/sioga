@@ -366,7 +366,7 @@
                                 </div>
                             @endif
                             <div class="card-footer text-end">
-                                <a href="{{ route('persona') }}" class="btn btn-secondary">
+                                <a href="{{ route('persona') }}" class="btn btn-outline-secondary">
                                     Regresar
                                 </a>
                                 <button type="submit" class="btn btn-primary">

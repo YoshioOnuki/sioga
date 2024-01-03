@@ -29,9 +29,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home/tesista', HomeTesistaIndex::class)
         ->name('home-tesista');
     // PERFIL
-    Route::get('/perfil', PerfilIndex::class)
+    Route::get('/perfil/{usuario_id}', PerfilIndex::class)
         ->name('perfil');
-    Route::get('/perfil/edit', PerfilEdit::class)
+    Route::get('/perfil/{usuario_id}/edit', PerfilEdit::class)
         ->name('perfil-edit');
     // CONFIGURACIÓN DE PERSONAS
     Route::get('/persona', PersonaIndex::class)
