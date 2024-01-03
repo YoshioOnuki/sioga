@@ -121,7 +121,7 @@
                     <label class="form-label">
                         Correo electrónico
                     </label>
-                    <input type="email" class="form-control @error('correo_electronico') is-invalid @enderror"
+                    <input id="correo_electronico" type="email" class="form-control @error('correo_electronico') is-invalid @enderror"
                         wire:model.live="correo_electronico" placeholder="example@unu.edu.pe"
                         autocomplete="off">
                     @error('correo_electronico')
@@ -133,7 +133,7 @@
                         Contraseña <span class="text-danger">*</span>
                     </label>
                     <div class="input-group input-group-flat" x-data="{ modo_password: 'password' }">
-                        <input x-bind:type="modo_password"
+                        <input id="contraseña" x-bind:type="modo_password"
                             class="form-control @error('contraseña') is-invalid @enderror"
                             wire:model.live="contraseña" placeholder="********" autocomplete="off">
                         <span class="input-group-text @error('contraseña') border border-danger @enderror">

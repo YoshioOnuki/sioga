@@ -40,7 +40,7 @@
                     <li><a class="nav-link scrollto" href="#funciona">¿Como Funciona?</a></li>
                     <li><a class="nav-link scrollto" href="#mision-vision">Misión / Visión</a></li>
                     <li><a class="nav-link scrollto o" href="#manuales-docs">Manuales / Documentos</a></li>
-                    <li><a class="getstarted" href="{{ route('login') }}">Iniciar Sesión</a></li>
+                    <li><a class="getstarted" href="{{ route('login') }}" id="login">Iniciar Sesión</a></li>
                 </ul>
             </nav>
 

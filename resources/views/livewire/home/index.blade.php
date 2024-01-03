@@ -21,7 +21,7 @@
                 <div class="card-body">
                     <div
                         class="d-flex flex-column align-items-center justify-content-center gap-5 my-7">
-                        <span class="fw-bold text-center" style="font-size: 2.5rem;">
+                        <span id="bienvenido" class="fw-bold text-center" style="font-size: 2.5rem;">
                             Bienvenido al Sistema de Obtención de Grados Académicos
                         </span>
                         <div class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-5">
