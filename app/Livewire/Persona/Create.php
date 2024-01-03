@@ -68,9 +68,9 @@ class Create extends Component
             $this->grado_academico = $persona->grado_academico_id;
             $this->ubigeo = $persona->ubigeo_id;
             $this->estado = $persona->persona_estado == 1 ? true : false;
-            if ($persona->tesista->first()) {
+            if ($persona->tesista) {
                 $this->tipo_perfil = 1;
-            } elseif ($persona->docente->first()) {
+            } elseif ($persona->docente) {
                 $this->tipo_perfil = 2;
             } else {
                 $this->tipo_perfil = 0;
