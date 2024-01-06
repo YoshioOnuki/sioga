@@ -50,6 +50,48 @@
                 <div wire:init="mostrar_toast"></div>
             @endif
             <div class="row g-3">
+                <div class="col-lg-4">
+                    <div class="card card-stacked animate__animated animate__fadeIn animate__faster">
+                        <div class="card-header bg-teal-lt justify-content-center py-5">
+                            <h3 class="card-title fw-semibold" style="font-size: 3rem;">
+                                2
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="text-secondary fs-3 text-center fw-bold">
+                                Proyectos de Tesis
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card card-stacked animate__animated animate__fadeIn animate__faster">
+                        <div class="card-header bg-cyan-lt justify-content-center py-5">
+                            <h3 class="card-title fw-semibold" style="font-size: 3rem;">
+                                2
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="text-secondary fs-3 text-center fw-bold">
+                                Borrador de Tesis
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card card-stacked animate__animated animate__fadeIn animate__faster">
+                        <div class="card-header bg-orange-lt justify-content-center py-5">
+                            <h3 class="card-title fw-semibold" style="font-size: 3rem;">
+                                2
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="text-secondary fs-3 text-center fw-bold">
+                                Asesorías
+                            </p>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-12">
                     <div class="card animate__animated animate__fadeIn animate__faster">
                         <div class="card-body border-bottom py-3">
@@ -72,11 +114,6 @@
                                             wire:model.live.debounce.500ms="search" aria-label="Search invoice">
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row g-5">
-                            <div class="col-lg-4">
-                                
                             </div>
                         </div>
                         <div class="table-responsive">
