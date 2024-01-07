@@ -36,10 +36,10 @@
             </h1>
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-                    <li><a class="nav-link scrollto" href="#funciona">¿Como Funciona?</a></li>
-                    <li><a class="nav-link scrollto" href="#mision-vision">Misión / Visión</a></li>
-                    <li><a class="nav-link scrollto o" href="#manuales-docs">Manuales / Documentos</a></li>
+                    <li><a class="nav-link scrollto active home" href="#hero">Home</a></li>
+                    <li><a class="nav-link scrollto funciona" href="#funciona">¿Como Funciona?</a></li>
+                    <li><a class="nav-link scrollto mision" href="#mision-vision">Misión / Visión</a></li>
+                    <li><a class="nav-link scrollto manuales-docs" href="#manuales-docs">Manuales / Documentos</a></li>
                     <li><a class="getstarted" href="{{ route('login') }}" id="login">Iniciar Sesión</a></li>
                 </ul>
             </nav>
@@ -211,7 +211,7 @@
                     <div class="col-lg-6 col-md-12 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
                         <div class="icon-box iconbox-blue">
                             <div class="icon">
-                                <img src="assets/img/mision.png" class="mision-vision"/>
+                                <img src="assets/img/mision.png" class="mision-vision" />
                             </div>
                             <h4><a href="">Misión</a></h4>
                             <p>
@@ -226,7 +226,7 @@
                     <div class="col-lg-6 col-md-12 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
                         <div class="icon-box iconbox-orange ">
                             <div class="icon">
-                                <img src="assets/img/vision.png" class="mision-vision"/>
+                                <img src="assets/img/vision.png" class="mision-vision" />
                             </div>
                             <h4><a href="">Visión</a></h4>
                             <p>
@@ -256,42 +256,42 @@
                         <ul id="portfolio-flters">
                             <li data-filter="*" class="filter-active">Todo</li>
                             <li data-filter=".filter-app">Manual para Tesista</li>
-                            <li data-filter=".filter-web">Manual para Docents</li>
+                            <li data-filter=".filter-web">Manual para Docente</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="300">
 
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                    <div class="col-lg-3 col-md-6 portfolio-item filter-app">
                         <div class="portfolio-wrap">
-                            <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
+                            <img src="media/manuales/manual_pregrado_tesista.png" class="img-fluid" alt="">
                             <div class="portfolio-info">
-                                <h4>App 1</h4>
+                                <h4>Manual de tesista - PREGRADO</h4>
                                 <p>App</p>
                                 <div class="portfolio-links">
-                                    <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
+                                    <a href="media/manuales/manual_pregrado_tesista.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
                                     <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+                    <div class="col-lg-3 col-md-6 portfolio-item filter-web">
                         <div class="portfolio-wrap">
-                            <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
+                            <img src="media/manuales/manual_posgrado_tesista.png" class="img-fluid" alt="">
                             <div class="portfolio-info">
-                                <h4>Web 3</h4>
+                                <h4>Manual de tesista - POSGRADO</h4>
                                 <p>Web</p>
                                 <div class="portfolio-links">
-                                    <a href="assets/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
+                                    <a href="media/manuales/manual_posgrado_tesista.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
                                     <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                    <div class="col-lg-6 col-md-6 portfolio-item filter-app">
                         <div class="portfolio-wrap">
                             <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
                             <div class="portfolio-info">
@@ -367,7 +367,7 @@
             </div>
             <div class="social-links text-center text-md-right pt-3 pt-md-0">
                 <a href="#"><i class="bx bxl-facebook"></i></a>
-                <a href="#"><i class='bx bx-world' ></i></a>
+                <a href="#"><i class='bx bx-world'></i></a>
             </div>
         </div>
     </footer>

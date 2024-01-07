@@ -28,7 +28,7 @@ Route::group(['middleware' => ['auth']], function () {
         ->name('home');
     // HOME TESISTA
     Route::get('/inicio', InicioIndex::class)
-        // ->middleware('permiso:inicio-index')
+        ->middleware('permiso:tesista-inicio-index')
         ->name('inicio');
     // PERFIL
     Route::get('/perfil/{usuario_id}', PerfilIndex::class)
