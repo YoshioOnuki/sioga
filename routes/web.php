@@ -12,6 +12,7 @@ use App\Livewire\Persona\Create as PersonaCreate;
 use App\Livewire\Configuracion\Rol\Index as RolIndex;
 use App\Livewire\Configuracion\Rol\Create as RolCreate;
 use App\Livewire\Configuracion\Permiso\Index as PermisoIndex;
+use App\Livewire\Proyecto\Index as ProyectoIndex;
 
 // RUTA DE INICIO
 Route::get('/', Home::class)
@@ -58,4 +59,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/configuracion/permisos', PermisoIndex::class)
         ->middleware('permiso:permiso-index')
         ->name('configuracion-permiso');
+    // PROYECTOS
+    Route::get('/proyecto', ProyectoIndex::class)
+        // ->middleware('permiso:proyecto-index')
+        ->name('proyecto');
 });

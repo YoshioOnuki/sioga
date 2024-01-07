@@ -1,4 +1,4 @@
-<aside class="navbar navbar-vertical navbar-expand-lg">
+<aside class="navbar navbar-vertical navbar-expand-lg" data-bs-theme="dark">
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu"
             aria-controls="sidebar-menu" aria-expanded="false" aria-label="Toggle navigation">
@@ -6,10 +6,12 @@
         </button>
         <h1 class="navbar-brand">
             <a href="{{ route('home') }}" class="d-flex align-items-center justify-content-center gap-2">
-                <img src="{{ asset('media/logo-dark.PNG') }}" alt="Logo Unia"
+                {{-- <img src="{{ asset('media/logo-dark.PNG') }}" alt="Logo Unia"
                     class="navbar-brand-image rounded hide-theme-light">
                 <img src="{{ asset('media/logo-light.PNG') }}" alt="Logo Unia"
-                    class="navbar-brand-image rounded hide-theme-dark">
+                    class="navbar-brand-image rounded hide-theme-dark"> --}}
+                <img src="{{ asset('media/logo-dark.PNG') }}" alt="Logo Unia"
+                    class="navbar-brand-image rounded">
                 <span class="text-uppercase" style="font-weight: 800; font-size: 1.8rem;">
                     SIOGA
                 </span>
@@ -61,7 +63,7 @@
                                 d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
                         </svg>
                     </a>
-                    <button type="button" class="btn w-100 mt-2" wire:click="logout">
+                    <button type="button" class="btn btn-light w-100 mt-2" wire:click="logout">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-bar-to-left"
                             width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                             fill="none" stroke-linecap="round" stroke-linejoin="round">
