@@ -68,7 +68,7 @@
                     <div class="card card-stacked animate__animated animate__fadeIn animate__faster">
                         <div class="card-header bg-cyan-lt justify-content-center py-5">
                             <h3 class="card-title fw-semibold" style="font-size: 3rem;">
-                                2
+                                0
                             </h3>
                         </div>
                         <div class="card-body">
@@ -123,14 +123,178 @@
                                         <th class="w-1">No.</th>
                                         <th>Participación</th>
                                         <th>Codigo</th>
-                                        <th>Titulo</th>
+                                        <th style="max-width: 300px;">Titulo</th>
                                         <th>Fecha</th>
                                         <th>Tiempo</th>
                                         <th>Archivo</th>
+                                        <th>Tipo Proyecto</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <tr>
+                                        <td>
+                                            <span class="text-secondary">
+                                                1
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-orange px-2 py-1">
+                                                Asesor
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="fw-bold">
+                                                2024-001
+                                            </span>
+                                        </td>
+                                        <td class="text-wrap" style="max-width: 300px;">
+                                            <div class="d-flex flex-column gap-2">
+                                                <span class="text-uppercase fw-bold fs-5">
+                                                    TESISTA (S): ONUKI NAVAS, AURELIO JESUS
+                                                </span>
+                                                <span class="text-uppercase">
+                                                    Sistema Web con Metodología Scrum y Usabilidad para la Gestión
+                                                    Documental en la Oficina de Grados y Títulos de la FISeIC - UNU
+                                                </span>
+                                                <span class="text-uppercase fw-bold fs-5">
+                                                    Programa Académico: Tecnología de la Información
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            23/01/2024 11:34 am
+                                        </td>
+                                        <td class="fw-bold text-green">
+                                            7 días restantes
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm">
+                                                Aprobar
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-orange-lt px-2 py-1">
+                                                Asesorías
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="btn-list flex-nowrap justify-content-end">
+                                                <a href="#" class="btn btn-outline-secondary btn-sm">
+                                                    Ver
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span class="text-secondary">
+                                                1
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-cyan px-2 py-1">
+                                                Primer Miembro
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="fw-bold">
+                                                2024-002
+                                            </span>
+                                        </td>
+                                        <td class="text-wrap" style="max-width: 300px;">
+                                            <div class="d-flex flex-column gap-2">
+                                                <span class="text-uppercase fw-bold fs-5">
+                                                    TESISTA (S): MENDOZA VARGAS, JHONATAN
+                                                </span>
+                                                <span class="text-uppercase">
+                                                    Gobierno Electrónico en la Gestión de Información del
+                                                    aprovechamiento de árboles por la Industria Forestal en concesiones
+                                                    autorizadas por la Autoridad Forestal de Ucayali-Serfor
+                                                </span>
+                                                <span class="text-uppercase fw-bold fs-5">
+                                                    Programa Académico: Gestión Publica
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            13/02/2024 11:34 am
+                                        </td>
+                                        <td class="fw-bold text-green">
+                                            3 días restantes
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm">
+                                                Revisar
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-teal-lt px-2 py-1">
+                                                Proyecto de Tesis
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="btn-list flex-nowrap justify-content-end">
+                                                <a href="#" class="btn btn-outline-secondary btn-sm">
+                                                    Ver
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span class="text-secondary">
+                                                1
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-pink px-2 py-1">
+                                                Presidente
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="fw-bold">
+                                                2024-003
+                                            </span>
+                                        </td>
+                                        <td class="text-wrap" style="max-width: 300px;">
+                                            <div class="d-flex flex-column gap-2">
+                                                <span class="text-uppercase fw-bold fs-5">
+                                                    TESISTA (S): LOPEZ DAVILA, IGNACIO JESUS
+                                                </span>
+                                                <span class="text-uppercase">
+                                                    Sistema de gestión académica en el proceso de matrícula de la
+                                                    Universidad Nacional de Ucayali: 2019 - 2020
+                                                </span>
+                                                <span class="text-uppercase fw-bold fs-5">
+                                                    Programa Académico: Gestión Publica
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            02/02/2024 11:34 am
+                                        </td>
+                                        <td class="fw-bold text-green">
+                                            14 días restantes
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm">
+                                                Revisar
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-cyan-lt px-2 py-1">
+                                                Borrador de Tesis
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="btn-list flex-nowrap justify-content-end">
+                                                <a href="#" class="btn btn-outline-secondary btn-sm">
+                                                    Ver
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
                                     {{-- @forelse ($personas as $item)
                                         <tr>
                                             <td>
