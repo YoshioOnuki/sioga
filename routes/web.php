@@ -61,6 +61,6 @@ Route::group(['middleware' => ['auth']], function () {
         ->name('configuracion-permiso');
     // PROYECTOS
     Route::get('/proyecto', ProyectoIndex::class)
-        // ->middleware('permiso:proyecto-index')
+        ->middleware('permiso:proyecto-index')
         ->name('proyecto');
 });
