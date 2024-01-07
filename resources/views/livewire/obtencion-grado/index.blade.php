@@ -63,6 +63,7 @@
                                     </ul>
                                 </div>
                                 <div class="tab-content">
+
                                     <div id="proyecto-tesis" class="card tab-pane active show" role="tabpanel">
                                         <div class="card-body">
                                             <div class="card-title">Registro de Proyecto de Tesis</div>
@@ -71,28 +72,22 @@
                                                     <label for="codigo" class="form-label required">
                                                         Código de Tesista
                                                     </label>
-                                                    <input type="text"
-                                                        class="form-control @error('codigo') is-invalid @enderror"
-                                                        id="codigo" wire:model.live="codigo"
-                                                        placeholder="Ingrese su código" />
+                                                    <input type="text" class="form-control @error('codigo') is-invalid @enderror" id="codigo" wire:model.live="codigo" placeholder="Ingrese su código" />
                                                     @error('codigo')
-                                                        <div class="invalid-feedback">
-                                                            {{ $message }}
-                                                        </div>
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
                                                     @enderror
                                                 </div>
                                                 <div class="col-lg-6" wire:ignore>
                                                     <label for="asesor" class="form-label required">
                                                         Asesor
                                                     </label>
-                                                    <input type="text"
-                                                        class="form-control @error('asesor') is-invalid @enderror"
-                                                        id="asesor" wire:model.live="asesor"
-                                                        placeholder="Seleccione su asesor" />
+                                                    <input type="text" class="form-control @error('asesor') is-invalid @enderror" id="asesor" wire:model.live="asesor" placeholder="Seleccione su asesor" />
                                                     @error('asesor')
-                                                        <div class="invalid-feedback">
-                                                            {{ $message }}
-                                                        </div>
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
                                                     @enderror
                                                 </div>
                                             </div>
@@ -101,12 +96,11 @@
                                                     <label for="titulo-proyecto" class="form-label required">
                                                         Título de Proyecto de Tesis
                                                     </label>
-                                                    <textarea class="form-control @error('titulo-proyecto') is-invalid @enderror"
-                                                        id="titulo-proyecto" wire:model.live="titulo-proyecto" placeholder="Ingrese el título de su proyecto"></textarea>
+                                                    <textarea class="form-control @error('titulo-proyecto') is-invalid @enderror" id="titulo-proyecto" wire:model.live="titulo-proyecto" placeholder="Ingrese el título de su proyecto"></textarea>
                                                     @error('titulo-proyecto')
-                                                        <div class="invalid-feedback">
-                                                            {{ $message }}
-                                                        </div>
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
                                                     @enderror
                                                 </div>
                                             </div>
@@ -115,12 +109,11 @@
                                                     <label for="proyecto" class="form-label required">
                                                         Seleccione su archivo
                                                     </label>
-                                                    <input type="file" class="form-control @error('proyecto') is-invalid @enderror"
-                                                        id="proyecto" wire:model.live="proyecto" accept="image/*" />
+                                                    <input type="file" class="form-control @error('proyecto') is-invalid @enderror" id="proyecto" wire:model.live="proyecto" accept="image/*" />
                                                     @error('proyecto')
-                                                        <div class="invalid-feedback">
-                                                            {{ $message }}
-                                                        </div>
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
                                                     @enderror
                                                 </div>
                                             </div>
@@ -133,6 +126,47 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div id="proyecto-tesis" class="card tab-pane active show" role="tabpanel">
+                                        <div class="card-body">
+                                            <div class="card-title">Proyecto Registrado</div>
+                                            <div class="row g-3">
+                                                <div class="alert alert-success" role="alert">
+                                                    <div class="d-flex">
+                                                        <div>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                                <path d="M5 12l5 5l10 -10"></path>
+                                                            </svg>
+                                                        </div>
+                                                        <div>
+                                                            <h4 class="alert-title">¡Su proyecto de Tesis ha sido registrado con satisfactoriamente!</h4>
+                                                            <div class="text-secondary">
+                                                                Título:
+                                                                <strong>
+                                                                    {{ $titulo_proyecto }}
+                                                                </strong>
+                                                            </div>
+                                                            <div class="text-secondary">
+                                                                Fecha:
+                                                                <strong>
+                                                                    {{ $fecha_aprobacion_proyecto }}
+                                                                </strong>
+                                                            </div>
+                                                            <div class="text-secondary mt-2">
+                                                                Los miembros jurados designados recibirán el proyecto de investigación a 
+                                                                través del <strong>SISTEMA WEB PARA LA GESTIÓN DEL PROCESO DE OBTENCIÓN DE GRADOS ACADÉMICOS</strong>, 
+                                                                el mismo que deberá ser revisado en un plazo máximo de quince (15) días calendario. 
+                                                                La(s) respectiva(s) observación(es) o sugerencia(s) deberán estar hechas con objetividad, 
+                                                                claridad y precisión científica.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div id="borrador-tesis" class="card tab-pane" role="tabpanel">
                                         <div class="card-body">
                                             <div class="card-title">Registro de Borrador de Tesis</div>
