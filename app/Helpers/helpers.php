@@ -25,7 +25,7 @@ function getColorRol($usuario_id)
     } else if ($rol->rol_nombre == 'DOCENTE') {
         return 'bg-green-lt';
     } else if ($rol->rol_nombre == 'TESISTA') {
-        return 'bg-pink-lt';
+        return 'bg-azure-lt';
     } else if ($rol->rol_nombre == 'COMISION') {
         return 'bg-teal-lt';
     }
