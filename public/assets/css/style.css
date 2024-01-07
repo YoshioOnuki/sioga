@@ -1923,3 +1923,7 @@ section {
   align-items: center;
   margin-bottom: 40px;
 }
+
+.text-secondary {
+  color: #667382 !important;
+}
