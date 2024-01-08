@@ -40,9 +40,11 @@ class Edit extends Component
     public function mount()
     {
         $usuario = Usuario::find($this->usuario_id);
+
         if (!$usuario) {
             abort(404, 'Usuario no encontrado.');
         }
+        
         $this->usuario_id = $usuario->usuario_id;
         $this->usuario = $usuario;
 
