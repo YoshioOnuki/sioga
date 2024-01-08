@@ -150,7 +150,11 @@
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#modal-asignar-usuario"
                                                             class="btn btn-outline-cyan btn-sm">
-                                                            Asignar Usuario
+                                                            @if ($item->usuario)
+                                                                Editar Usuario
+                                                            @else
+                                                                Asignar Usuario
+                                                            @endif
                                                         </button>
                                                     @endif
                                                     @if (auth()->user()->permiso('persona-edit'))
