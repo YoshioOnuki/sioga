@@ -13,7 +13,7 @@
                         </svg>
                     </div>
                     <div>
-                        <h4 class="alert-title">¡Su proyecto de Tesis ha sido registrado satisfactoriamente!</h4>
+                        <h4 class="alert-title">¡Su Proyecto de Tesis ha sido registrado satisfactoriamente!</h4>
                         <div class="text-secondary">
                             Título:
                             <strong>
@@ -26,7 +26,7 @@
                                 {{ $fecha_aprobacion_proyecto }}
                             </strong>
                         </div>
-                        <div class="text-secondary mt-2">
+                        <div class="text-secondary mt-1">
                             Los miembros jurados designados recibirán el proyecto de investigación a 
                             través del <strong>SISTEMA WEB PARA LA GESTIÓN DEL PROCESO DE OBTENCIÓN DE GRADOS ACADÉMICOS</strong>, 
                             el mismo que deberá ser revisado en un plazo máximo de quince (15) días calendario. 

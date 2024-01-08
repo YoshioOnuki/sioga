@@ -65,26 +65,62 @@
                                 <div class="tab-content">
                                     <div id="proyecto-tesis" class="card tab-pane active show" role="tabpanel">
                                         @if (session('paso') === null)
-                                            <livewire:obtencion-grado.proyecto-tesis.formulario-registro />
+                                        <livewire:obtencion-grado.proyecto-tesis.formulario-registro />
                                         @endif
                                         @if (session('paso') === '1')
-                                            <livewire:obtencion-grado.proyecto-tesis.estado-proceso-posgrado />
+                                        <livewire:obtencion-grado.proyecto-tesis.estado-proceso-posgrado />
                                         @endif
                                     </div>
 
                                     <div id="borrador-tesis" class="card tab-pane" role="tabpanel">
                                         <div class="card-body">
-                                            <div class="card-title">Registro de Borrador de Tesis</div>
-                                            <p class="text-secondary">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, alias aliquid distinctio dolorem expedita, fugiat hic magni molestiae molestias odit.
-                                            </p>
-                                            <div class="card-footer bg-transparent mt-auto">
-                                                <div class="btn-list justify-content-end">
-                                                    <button type="submit" class="btn btn-primary">
-                                                        Registrar Borrador de Tesis
-                                                    </button>
+                                            <div class="card-title">Registro de Informe Final de Tesis</div>
+                                            @if (session('paso') >= 9)
+                                                <p class="text-secondary">
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, alias aliquid distinctio dolorem expedita, fugiat hic magni molestiae molestias odit.
+                                                </p>
+                                                <div class="card-footer bg-transparent mt-auto">
+                                                    <div class="btn-list justify-content-end">
+                                                        <button type="submit" class="btn btn-primary">
+                                                            Registrar Informe Final de Tesis
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            @else
+                                                <div class="alert alert-warning" role="alert">
+                                                    <div class="d-flex">
+                                                        <div>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                                <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+                                                                <path d="M12 9h.01"></path>
+                                                                <path d="M11 12h1v4h1"></path>
+                                                            </svg>
+                                                        </div>
+                                                        <div>
+                                                            <h4 class="alert-title">¡Su proyecto de tesis no ah sido aprobado!</h4>
+                                                            <div class="text-secondary">
+                                                                <strong>
+                                                                    Requisitos para registrar el Informe Final de Tesis:
+                                                                </strong>
+                                                            </div>
+                                                            <div class="text-secondary">
+                                                                <ul>
+                                                                    <li>
+                                                                        El proyecto de tesis debe ser aprobado por el Asesor.
+                                                                    </li>
+                                                                    <li>
+                                                                        El proyecto de tesis debe ser aprobado por el Jurado Dictaminador.
+                                                                    </li>
+                                                                    <li>
+                                                                        Conformidad del Asesor dando por concluido el Informe de Tesis.
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
