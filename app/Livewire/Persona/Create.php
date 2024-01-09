@@ -70,6 +70,9 @@ class Create extends Component
             $this->estado = $persona->persona_estado == 1 ? true : false;
             if ($persona->tesista) {
                 $this->tipo_perfil = 1;
+                $this->tipo_programa = $persona->tesista->programa->programa_tipo == 'MAESTRIA' ? 1 : 2;
+                $this->updatedTipoPrograma($this->tipo_programa);
+                $this->programa = $persona->tesista->programa_id;
             } elseif ($persona->docente) {
                 $this->tipo_perfil = 2;
             } else {
