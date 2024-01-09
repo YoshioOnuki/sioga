@@ -265,7 +265,7 @@
                                         <div class="col">
                                             <div class="row g-3">
                                                 <div class="col-lg-12">
-                                                    <label for="grado_academico_file" class="form-label required">
+                                                    <label for="grado_academico_file" class="form-label @if($modo == 'create') required @endif">
                                                         Grado Academico
                                                     </label>
                                                     <input type="file"
