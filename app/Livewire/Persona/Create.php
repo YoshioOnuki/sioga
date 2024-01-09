@@ -110,10 +110,22 @@ class Create extends Component
             'grado_academico' => 'required|exists:grado_academico,grado_academico_id',
             'ubigeo' => 'required|exists:ubigeo,ubigeo_id',
             'estado' => 'nullable|boolean',
-            'grado_academico_file' => $this->tipo_perfil == 1 ? 'required|file|max:4096|mimes:pdf' : 'nullable',
-            'programa' => $this->tipo_perfil == 1 ? 'required|exists:programa,programa_id' : 'nullable',
-            'tipo_programa' => $this->tipo_perfil == 1 ? 'required|numeric' : 'nullable',
-            'cv_file' => $this->tipo_perfil == 2 ? 'required|file|max:4096|mimes:pdf' : 'nullable',
+            'grado_academico_file' => $this->tipo_perfil == 1
+                ? ($this->modo == 'create'
+                    ? 'required|file|max:4096|mimes:pdf'
+                    : 'nullable|file|max:4096|mimes:pdf')
+                : 'nullable',
+            'programa' => $this->tipo_perfil == 1
+                ? 'required|exists:programa,programa_id'
+                : 'nullable',
+            'tipo_programa' => $this->tipo_perfil == 1
+                ? 'required|numeric'
+                : 'nullable',
+            'cv_file' => $this->tipo_perfil == 2
+                ? ($this->modo == 'create'
+                    ? 'required|file|max:4096|mimes:pdf'
+                    : 'nullable|file|max:4096|mimes:pdf')
+                : 'nullable',
         ]);
         // guardamos los datos
         if ($this->modo == 'create') {
