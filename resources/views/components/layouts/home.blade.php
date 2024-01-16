@@ -56,7 +56,7 @@
                 </div>
             </div>
             <div class="text-center">
-                <a href="#" class="btn-get-started-success">Registrarse</a>
+                <a href="{{ route('register') }}" class="btn-get-started-success">Registrarse</a>
             </div>
         </div>
     </section>

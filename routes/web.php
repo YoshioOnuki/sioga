@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Home as Home;
 use App\Livewire\Auth\Login as Login;
+use App\Livewire\Auth\Register;
 use App\Livewire\Home\Index as HomeIndex;
 use App\Livewire\Inicio\Index as InicioIndex;
 use App\Livewire\Perfil\Index as PerfilIndex;
@@ -24,6 +25,10 @@ Route::get('/', Home::class)
 Route::get('/login', Login::class)
     ->middleware('guest')
     ->name('login');
+//RUTA DE REGISTRO
+Route::get('/register', Register::class)
+    ->middleware('guest')
+    ->name('register');
 // RUTA DE LOGOUT
 Route::group(['middleware' => ['auth']], function () {
     // HOME

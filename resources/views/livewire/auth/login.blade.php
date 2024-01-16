@@ -77,7 +77,7 @@
             </form>
             <div class="text-center text-muted mt-3">
                 ¿No tienes una cuenta?
-                <a href="#" tabindex="-1">
+                <a href="{{ route('register') }}" tabindex="-1">
                     Registrate aquí
                 </a>
             </div>
