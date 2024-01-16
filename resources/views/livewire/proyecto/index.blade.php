@@ -224,9 +224,9 @@
                                             3 días restantes
                                         </td>
                                         <td>
-                                            <button class="btn btn-primary btn-sm">
+                                            <a href="{{ route('proyecto-revisar', 1) }}" class="btn btn-primary btn-sm">
                                                 Revisar
-                                            </button>
+                                            </a>
                                         </td>
                                         <td>
                                             <span class="badge bg-teal-lt px-2 py-1">
@@ -278,9 +278,9 @@
                                             14 días restantes
                                         </td>
                                         <td>
-                                            <button class="btn btn-primary btn-sm">
+                                            <a href="{{ route('proyecto-revisar', 2) }}" class="btn btn-primary btn-sm">
                                                 Revisar
-                                            </button>
+                                            </a>
                                         </td>
                                         <td>
                                             <span class="badge bg-cyan-lt px-2 py-1">
