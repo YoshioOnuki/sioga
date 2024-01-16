@@ -64,10 +64,10 @@
                                 </div>
                                 <div class="tab-content">
                                     <div id="proyecto-tesis" class="card tab-pane active show" role="tabpanel">
-                                        @if (session('paso') === null)
+                                        @if ($proceso_numero === 0)
                                         <livewire:obtencion-grado.proyecto-tesis.formulario-registro />
                                         @endif
-                                        @if (session('paso') === '1')
+                                        @if ($proceso_numero === 1)
                                         <livewire:obtencion-grado.proyecto-tesis.estado-proceso-posgrado />
                                         @endif
                                     </div>
