@@ -169,9 +169,9 @@
                                             7 días restantes
                                         </td>
                                         <td>
-                                            <button class="btn btn-primary btn-sm">
+                                            <a href="{{ route('proyecto-aprobar', 1) }}" class="btn btn-primary btn-sm">
                                                 Aprobar
-                                            </button>
+                                            </a>
                                         </td>
                                         <td>
                                             <span class="badge bg-orange-lt px-2 py-1">

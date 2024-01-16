@@ -105,7 +105,7 @@
                                 <small class="form-hint">
                                     Indique el motivo por el cual el proyecto no es aceptado.
                                 </small>
-                                <textarea rows="5" class="form-control" placeholder="Ingrese sus motivos">
+                                <textarea rows="5" class="form-control">
                                 </textarea>
                             </div>
                             <div class="d-flex gap-2">
