@@ -149,20 +149,22 @@ class Create extends Component
                     $path = 'files/archivos/';
                     $filename = time() . $persona->persona_id . uniqid() . '.' . $this->grado_academico_file->getClientOriginalExtension();
                     $this->grado_academico_file->storeAs($path, $filename, 'public_file');
+                    // guardamos los datos del tesista
+                    $persona->tesista()->create([
+                        'programa_id' => $this->programa,
+                        'tesista_grado_path' => $path . $filename,
+                    ]);
                 }
-                $persona->tesista()->create([
-                    'programa_id' => $this->programa,
-                    'tesista_grado_path' => $path . $filename,
-                ]);
             } elseif ($this->tipo_perfil == 2) { // si es docente guardamos sus datos
                 if ($this->cv_file) {
                     $path = 'files/archivos/';
                     $filename = time() . $persona->persona_id . uniqid() . '.' . $this->cv_file->getClientOriginalExtension();
                     $this->cv_file->storeAs($path, $filename, 'public_file');
+                    // guardamos los datos del docente
+                    $persona->docente()->create([
+                        'docente_cv_path' => $path . $filename,
+                    ]);
                 }
-                $persona->docente()->create([
-                    'docente_cv_path' => $path . $filename,
-                ]);
             }
             // guardamos en sesion el tipo de mensaje y el mensaje
             session([
@@ -188,20 +190,22 @@ class Create extends Component
                     $path = 'files/archivos/';
                     $filename = time() . $persona->persona_id . uniqid() . '.' . $this->grado_academico_file->getClientOriginalExtension();
                     $this->grado_academico_file->storeAs($path, $filename, 'public_file');
+                    // guardamos los datos del tesista
+                    $persona->tesista()->update([
+                        'programa_id' => $this->programa,
+                        'tesista_grado_path' => $path . $filename,
+                    ]);
                 }
-                $persona->tesista()->create([
-                    'programa_id' => $this->programa,
-                    'tesista_grado_path' => $path . $filename,
-                ]);
             } elseif ($this->tipo_perfil == 2) { // si es docente guardamos sus datos
                 if ($this->cv_file) {
                     $path = 'files/archivos/';
                     $filename = time() . $persona->persona_id . uniqid() . '.' . $this->cv_file->getClientOriginalExtension();
                     $this->cv_file->storeAs($path, $filename, 'public_file');
+                    // guardamos los datos del docente
+                    $persona->docente()->update([
+                        'docente_cv_path' => $path . $filename,
+                    ]);
                 }
-                $persona->docente()->create([
-                    'docente_cv_path' => $path . $filename,
-                ]);
             }
             // guardamos en sesion el tipo de mensaje y el mensaje
             session([

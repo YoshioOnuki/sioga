@@ -69,6 +69,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/proyecto/{proyecto}/aprobar', ProyectoAprobar::class)
         ->middleware('permiso:proyecto-index')
         ->name('proyecto-aprobar');
+    Route::get('/proyecto/{proyecto}/revisar', ProyectoRevisar::class)
+        ->middleware('permiso:proyecto-index')
+        ->name('proyecto-revisar');
     // OBTENCIÓN DE GRADO
     Route::get('/obtencion-grado', OptencionGradoIndex::class)
         ->middleware('permiso:obtencion-grado-index')
