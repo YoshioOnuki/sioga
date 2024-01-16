@@ -6,8 +6,6 @@ use Livewire\Component;
 
 class Aprobar extends Component
 {
-    public $mostrar = false;
-
     public function aprobar_proyecto()
     {
         // guardamos en sesion el tipo de mensaje y el mensaje

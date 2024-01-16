@@ -98,7 +98,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div x-show="mostrar" x-transition>
+                            <div x-show="mostrar" x-collapse>
                                 <label class="form-label">
                                     Mensaje a enviar:
                                 </label>
