@@ -21,7 +21,8 @@ class Login extends Component
     public $contraseña;
     public $remember_me = false;
 
-    public function ingresar() {
+    public function ingresar()
+    {
         $this->validate();
         // buscar el usuario
         $usuario = Usuario::where('usuario_correo', $this->correo_electronico)->first();
@@ -52,7 +53,8 @@ class Login extends Component
         }
     }
 
-    public function render() {
+    public function render()
+    {
         return view('livewire.auth.login');
     }
 }

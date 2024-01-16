@@ -13,6 +13,8 @@ use App\Livewire\Configuracion\Rol\Index as RolIndex;
 use App\Livewire\Configuracion\Rol\Create as RolCreate;
 use App\Livewire\Configuracion\Permiso\Index as PermisoIndex;
 use App\Livewire\Proyecto\Index as ProyectoIndex;
+use App\Livewire\Proyecto\Revisar as ProyectoRevisar;
+use App\Livewire\Proyecto\Aprobar as ProyectoAprobar;
 use App\livewire\ObtencionGrado\Index as OptencionGradoIndex;
 
 // RUTA DE INICIO
@@ -64,6 +66,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/proyecto', ProyectoIndex::class)
         ->middleware('permiso:proyecto-index')
         ->name('proyecto');
+    Route::get('/proyecto/{proyecto}/aprobar', ProyectoAprobar::class)
+        ->middleware('permiso:proyecto-index')
+        ->name('proyecto-aprobar');
+    Route::get('/proyecto/{proyecto}/revisar', ProyectoRevisar::class)
+        ->middleware('permiso:proyecto-index')
+        ->name('proyecto-revisar');
     // OBTENCIÓN DE GRADO
     Route::get('/obtencion-grado', OptencionGradoIndex::class)
         ->middleware('permiso:obtencion-grado-index')
