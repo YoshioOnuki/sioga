@@ -16,7 +16,7 @@ class ProyectoFile extends Model
     protected $primaryKey = 'proyecto_file_id';
     protected $fillable = [
         'proyecto_file_id',
-        'proyecto_file_path]',
+        'proyecto_file_path',
         'proyecto_file_estado',
         'proceso_id',
         'proyecto_id',

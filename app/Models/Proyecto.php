@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Proyecto extends Model
@@ -38,6 +39,14 @@ class Proyecto extends Model
 
     public function lineas_investigacion(): BelongsTo {
         return $this->belongsTo(LineasInvestigacion::class, 'lineas_investigacion_id');
+    }
+
+    public function proyecto_tesista(): HasMany {
+        return $this->hasMany(ProyectoTesista::class, 'proyecto_id');
+    }
+
+    public function proyecto_file(): HasMany {
+        return $this->hasMany(ProyectoFile::class, 'proyecto_id');
     }
 
     protected static function boot() {

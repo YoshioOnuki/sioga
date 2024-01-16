@@ -16,6 +16,19 @@
         </div>
         <div class="row g-3 mb-3">
             <div class="col-md">
+                <label for="lineas_investigacion" class="form-label required">
+                    Línea de Investigación
+                </label>
+                <input type="text" class="form-control @error('lineas_investigacion') is-invalid @enderror" id="lineas_investigacion" wire:model.live="lineas_investigacion" placeholder="Seleccione su línea de investigación" />
+                @error('lineas_investigacion')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+        </div>
+        <div class="row g-3 mb-3">
+            <div class="col-md">
                 <label for="titulo_proyecto" class="form-label required">
                     Título de Proyecto de Tesis
                 </label>
@@ -29,11 +42,11 @@
         </div>
         <div class="row g-3">
             <div class="col-md">
-                <label for="proyecto" class="form-label required">
+                <label for="proyecto_file" class="form-label required">
                     Seleccione su archivo
                 </label>
-                <input type="file" class="form-control @error('proyecto') is-invalid @enderror" id="proyecto" wire:model.live="proyecto" accept="pdf" />
-                @error('proyecto')
+                <input type="file" class="form-control @error('proyecto_file') is-invalid @enderror" id="proyecto_file" wire:model.live="proyecto_file" accept="pdf" />
+                @error('proyecto_file')
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>
