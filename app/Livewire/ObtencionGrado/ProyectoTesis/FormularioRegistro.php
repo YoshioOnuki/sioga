@@ -2,6 +2,7 @@
 
 namespace App\Livewire\ObtencionGrado\ProyectoTesis;
 
+use App\Models\LineasInvestigacion;
 use App\Models\Persona;
 use App\Models\Proyecto;
 use App\Models\ProyectoFile;
@@ -26,10 +27,6 @@ class FormularioRegistro extends Component
 
     public function mount()
     {
-        $this->asesor = '';
-        $this->titulo_proyecto = '';
-        $this->proyecto_file = '';
-        $this->lineas_investigacion = '';
         $this->persona_id = auth()->user()->persona->persona_id;
     }
 
@@ -104,6 +101,16 @@ class FormularioRegistro extends Component
 
     public function render()
     {
-        return view('livewire.obtencion-grado.proyecto-tesis.formulario-registro');
+        return view('livewire.obtencion-grado.proyecto-tesis.formulario-registro', [
+            'asesores' => Persona::where('persona_estado', 1)
+                ->whereHas('docente', function ($query) {
+                    $query->where('docente_estado', 1);
+                })
+                ->whereHas('usuario', function ($query) {
+                    $query->where('rol_id', 2);
+                })
+                ->get(),
+            'lineas_investigaciones' => LineasInvestigacion::where('lineas_investigacion_estado', 1)->get(),
+        ]);
     }
 }

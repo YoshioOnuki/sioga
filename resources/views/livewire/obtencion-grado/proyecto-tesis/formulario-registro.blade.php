@@ -17,13 +17,19 @@
         <div class="row g-3 mb-3">
             <div class="col-md">
                 <label for="lineas_investigacion" class="form-label required">
-                    Línea de Investigación
+                    Líneas de Investigación
                 </label>
-                <input type="text" class="form-control @error('lineas_investigacion') is-invalid @enderror" id="lineas_investigacion" wire:model.live="lineas_investigacion" placeholder="Seleccione su línea de investigación" />
+                <select type="password" class="form-select @error('lineas_investigacion') is-invalid @enderror"
+                    id="lineas_investigacion" wire:model.live="lineas_investigacion">
+                    <option value="">Seleccione una línea investigación</option>
+                    @foreach ($lineas_investigaciones as $item)
+                        <option value="{{ $item->lineas_investigacion_id }}">{{ $item->lineas_investigacion_nombre }}</option>
+                    @endforeach
+                </select>
                 @error('lineas_investigacion')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
                 @enderror
             </div>
         </div>
