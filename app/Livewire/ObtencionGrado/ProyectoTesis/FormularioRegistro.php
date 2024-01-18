@@ -5,7 +5,6 @@ namespace App\Livewire\ObtencionGrado\ProyectoTesis;
 use App\Models\LineasInvestigacion;
 use App\Models\Persona;
 use App\Models\Proyecto;
-use App\Models\ProyectoFile;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -64,7 +63,6 @@ class FormularioRegistro extends Component
         $proyecto->lineas_investigacion_id = $this->lineas_investigacion;
         $proyecto->proyecto_titulo = $this->titulo_proyecto;
         $proyecto->save();
-        // dd($proyecto);
 
         //Registrar proyecto_tesista
         $proyecto->proyecto_tesista()->create([
@@ -76,7 +74,6 @@ class FormularioRegistro extends Component
             $path = 'files/proyectos/';
             $filename = time() . $this->persona_id . uniqid() . '.' . $this->proyecto_file->getClientOriginalExtension();
             $this->proyecto_file->storeAs($path, $filename, 'public_file');
-            // dd($this->proyecto_file);
             
             // Registrar proyecto_file
             $proyecto->proyecto_file()->create([
