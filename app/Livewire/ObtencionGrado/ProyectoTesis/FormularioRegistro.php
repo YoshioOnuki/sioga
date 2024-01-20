@@ -99,13 +99,13 @@ class FormularioRegistro extends Component
     public function render()
     {
         return view('livewire.obtencion-grado.proyecto-tesis.formulario-registro', [
-            'asesores' => Persona::where('persona_estado', 1)
-                ->whereHas('docente', function ($query) {
-                    $query->where('docente_estado', 1);
-                })
-                ->whereHas('usuario', function ($query) {
-                    $query->where('rol_id', 2);
-                })
+            'asesores' => Persona::join('docente', 'docente.persona_id', 'persona.persona_id')
+                ->join('docente_lineas_investigacion', 'docente_lineas_investigacion.docente_id', 'docente.docente_id')
+                ->join('usuario', 'usuario.persona_id', 'persona.persona_id')
+                ->join('rol', 'rol.rol_id', 'usuario.rol_id')
+                ->where('persona_estado', 1)
+                ->where('rol.rol_nombre', 'DOCENTE')
+                ->where('docente_lineas_investigacion.docente_id', 'docente.docente_id')
                 ->get(),
             'lineas_investigaciones' => LineasInvestigacion::where('lineas_investigacion_estado', 1)->get(),
         ]);
