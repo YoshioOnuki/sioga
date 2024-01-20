@@ -67,7 +67,7 @@
                                         @if ($proceso_numero === 0)
                                         <livewire:obtencion-grado.proyecto-tesis.formulario-registro />
                                         @endif
-                                        @if ($proceso_numero === 1)
+                                        @if ($proceso_numero === 1 || $proceso_numero === 2 || $proceso_numero === 3 || $proceso_numero === 4)
                                         <livewire:obtencion-grado.proyecto-tesis.estado-proceso-posgrado />
                                         @endif
                                     </div>
