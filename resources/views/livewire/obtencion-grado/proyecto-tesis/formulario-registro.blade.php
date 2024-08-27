@@ -74,8 +74,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <div class="modal-status bg-primary"></div>
                 <div class="modal-body text-center py-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon mb-2 icon-tabler icon-tabler-help text-primary icon-lg" width="24" height="24" 
-                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" 
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon mb-2 icon-tabler icon-tabler-help text-primary icon-lg" width="24" height="24"
+                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                         stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                         <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
                         <path d="M12 17l0 .01" />
@@ -87,7 +87,7 @@
                 <div class="modal-footer">
                     <div class="w-100">
                         <div class="row">
-                            
+
                             <div class="col">
                                 <button type="button" class="btn btn-bg-muted w-100" data-bs-dismiss="modal">
                                     Cancel
@@ -98,7 +98,7 @@
                                     Confirmar
                                 </button>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
